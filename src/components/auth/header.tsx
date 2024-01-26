@@ -18,7 +18,7 @@ export const Header = ({label,} : HeaderProps) => {
         <div className="w-full flex flex-col gap-y-4 items-center justify-center">
 
             <h1 className={cn(" text-3xl font-semibold", font.className,)}>
-                <Image src="/LOGO.png" width={72} height={72} alt="logo" /> Login
+                <Image src="/LOGO.png" width={72} height={72} alt="logo" /> Auth
             </h1>
 
             <p className="text-muted-foreground text-sm">

@@ -3,7 +3,7 @@
 import React from 'react'
 
 import * as z from 'zod';
-import { CardWrapper } from '@/components/auth/card-wrapper';
+import { CardWrapper } from '@/components/ui/card-wrapper';
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/form-error';
 import { FormSuccess } from '@/components/form-success';
 import { cn } from "@/lib/utils";
+import { useSearchParams } from 'next/navigation';
 import {
   Form,
   FormControl,
@@ -26,6 +27,11 @@ import { useState } from 'react';
 import { login } from '../../../action/login'
 
 export function LoginForm() {
+  const searchParams = useSearchParams()
+  const urlError = searchParams.get('error') === 'OAuthAccountNotLinked'
+   ? 'Email already use with a diffrent provider': '';
+
+
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -41,8 +47,10 @@ export function LoginForm() {
     setSuccess('');
 
     login(values).then((data) => {
-      setError(data.error);
-      setSuccess(data.success)
+      setError(data?.error);
+      // TODO: add when we add 2FA 
+      setSuccess(data?.success)
+
     })
 
   }
@@ -107,7 +115,7 @@ export function LoginForm() {
               />
 
             </div>
-            <FormError message={error} />
+            <FormError message={error || urlError} />
             <FormSuccess message={success} />
             <Button type='submit' className='w-full'>
               Login

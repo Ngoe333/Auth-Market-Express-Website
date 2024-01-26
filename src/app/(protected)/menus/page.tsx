@@ -1,6 +1,9 @@
 import React from 'react'
+import {auth} from '../../../../auth';
 
-function MenuPage() {
+const MenuPage = async () => {
+  const session = await auth()
+
   return (
     <div className='text-center mt-32'>
       <h2 className='text-4xl text-green-500 font-semibold'>Menu Items</h2>
@@ -10,6 +13,13 @@ function MenuPage() {
         reiciendis nobis harum et delectus enim cupiditate voluptatibus veritatis! Totam quisquam magnam
         commodi tenetur placeat corporis.
       </div>
+
+      <div className=' mt-10'>
+        {JSON.stringify(session)}
+      </div>
+
+
+
     </div>
   )
 }

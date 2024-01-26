@@ -42,10 +42,10 @@ export const Header = () => {
             <Link className="text-green-500" href={"/"}>
               Home
             </Link>
-            <Link href={"/menus"}>Menus</Link>
-            <Link href={"/order"}>Order</Link>
-            <Link href={"/about"}>About</Link>
-            <Link href={"/contact"}>Contact</Link>
+            <Link className="cursor-pointer" href={"/menus"}>Menus</Link>
+            <Link className="cursor-pointer" href={"/order"}>Order</Link>
+            <Link className="cursor-pointer" href={"/about"}>About</Link>
+            <Link className="cursor-pointer" href={"/contact"}>Contact</Link>
           </ul>
 
         </nav>

@@ -3,8 +3,10 @@
 import * as z from 'zod';
 import { RegisterSchema } from '../schemas';
 import bcrypt from 'bcrypt';
-import db from '@/mongo/db.config';
-import User from '@/models/user';
+import { db } from '@/lib/db';
+import { getUserByEmail } from '../data/user';
+import { generateVerificationToken } from '@/lib/tokens';
+import { sendVerificationEmail } from '@/lib/mail';
 
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
@@ -16,10 +18,31 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const {name, email, password, } = validatedField.data;
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const existingUser = await db.
+    const existingUser = await getUserByEmail(email)
+       
 
+    if (existingUser){
+        return {error: "Email already use"}
+    }
 
+    await db.user.create({
+        data: {
+            name,
+            email,
+            password : hashPassword,
+        }
+    })
+
+    const verificationToken = await generateVerificationToken(email)
+    await sendVerificationEmail(
+        verificationToken.email,
+        verificationToken.token,
+    )
+        
     
-    return { success: 'Email send'};
+
+    // : Todo send verification token email
+    
+    return { success: 'Comfirmation email send !'};
 
 };
