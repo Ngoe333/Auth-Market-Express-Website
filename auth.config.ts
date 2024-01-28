@@ -1,5 +1,5 @@
 import type { NextAuthConfig } from "next-auth"
-import Credentials from 'next-auth/providers/Credentials';
+import CredentialsProvider from 'next-auth/providers/Credentials';
 import { LoginSchema } from "./schemas";
 import { getUserByEmail } from "./data/user";
 import Google from 'next-auth/providers/google';
@@ -14,7 +14,7 @@ export default {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
 
-    Credentials({
+    CredentialsProvider({
         async authorize(credentials){
             const validatedFields = LoginSchema.safeParse(credentials)
 
