@@ -30,7 +30,8 @@ import { login } from '../../../action/login';
 export function LoginForm() {
 
   // Thisn is for a USER that signup with PROVIDER and went to LOGIGN with the seem informations
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
   const urlError = searchParams.get('error') === 'OAuthAccountNotLinked'
     ? 'Email already use with a diffrent provider' : '';
 
@@ -49,14 +50,13 @@ export function LoginForm() {
     setError('');
     setSuccess('');
 
-    login(values).then((data) => {
+    login(values, callbackUrl).then((data) => {
 
       // This is For reset the FORM if the is and ERROR.
       if (data?.error) {
         form.reset();
         setError(data?.error);
       }
-
 
       // This is For reset the FORM if the is a SUCCESS.
       if (data?.success) {
@@ -70,7 +70,8 @@ export function LoginForm() {
         setShowTwoFactor(true)
       }
 
-    }).catch(() => setError('Something went wrong!'));
+    })
+    .catch(() => setError('Something went wrong!'));
 
 
   }

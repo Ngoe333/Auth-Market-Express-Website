@@ -42,9 +42,18 @@ export function RegisterForm() {
     setSuccess('');
 
     register(values).then((data) => {
-      setError(data.error);
-      setSuccess(data.success)
+      if (data?.error) {
+        form.reset();
+        setError(data?.error);
+      }
+
+      // This is For reset the FORM if the is a SUCCESS.
+      if (data?.success) {
+        form.reset();
+        setSuccess(data?.success)
+      }
     })
+    .catch(() => setError('Something went wrong!'));
 
   }
 

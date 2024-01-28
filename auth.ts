@@ -1,10 +1,11 @@
-import NextAuth from "next-auth"
+import NextAuth, { Session, User } from "next-auth"
 import authConfig from "./auth.config"
 import { UserRole } from "@prisma/client";
 import {PrismaAdapter} from '@auth/prisma-adapter';
 import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
 import { getTowFactorComfirmationByUserId } from "./data/tow-factor-comfirmation"
+import { any } from "zod";
 
 
 
@@ -31,7 +32,6 @@ export const {
                 data: {emailVerified: new Date()}
             })
         }
-
     },
 
     //  Callback is use for get more information when user signin or signout using the TOKEN and SESSION
@@ -40,7 +40,8 @@ export const {
 
             // Allow OAuth without email verification
             if (account?.provider !== 'credentials') return true;
-            const existingUser = await getUserById(user.id);
+            
+            const existingUser = await getUserById(user.id as any);
 
             // prevent sigin without email verification
             if(!existingUser?.emailVerified) return false;
@@ -50,6 +51,7 @@ export const {
 
                 if(!twoFactorConfirmation) return false;
 
+                    // This code delete the 2FA went the USER login || next time the login their we be ask 2FA again
                 await db.towFactorConfirmation.delete({
                     where: {id: twoFactorConfirmation.id}
                 });
@@ -59,7 +61,7 @@ export const {
             return true
         },
 
-        async session({ token, session }){
+        async session({ token, session }: {session: Session, user?: User, token?: any}){
             // console.log({SessionToken: token})
 
             if(token.sub && session.user){

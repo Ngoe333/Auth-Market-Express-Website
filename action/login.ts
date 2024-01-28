@@ -8,23 +8,23 @@ import { DEFAULT_LOGIN_REDIRECT } from '../route';
 import { generateVerificationToken, generateTowFactorToken } from '@/lib/tokens';
 import { getUserByEmail } from '../data/user';
 import { sendVerificationEmail, sendTowFactorTokenEmail } from '@/lib/mail';
-import { getTowFactorTokenByEmail } from './two-factor-token';
+import { getTowFactorTokenByEmail } from '../data/two-factor-token';
 import { getTowFactorComfirmationByUserId } from '../data/tow-factor-comfirmation';
 import { db } from '@/lib/db';
-export const login = async (values: z.infer<typeof LoginSchema>) => {
+export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl? : string | null,) => {
     const validatedFields = LoginSchema.safeParse(values);
-    if(!validatedFields.success){
-        return { error: 'Invalid Field'}
+    if (!validatedFields.success) {
+        return { error: 'Invalid Field' }
     }
-    
-    const { email, password, code}  = validatedFields.data;
+
+    const { email, password, code } = validatedFields.data;
     const existingUser = await getUserByEmail(email);
 
-    if(!existingUser || !existingUser.email || !existingUser.password){
-        return{error: 'Email dose not exist !'}
+    if (!existingUser || !existingUser.email || !existingUser.password) {
+        return { error: 'Email dose not exist !' }
     }
 
-    if(!existingUser.emailVerified){
+    if (!existingUser.emailVerified) {
         const verificationToken = await generateVerificationToken(existingUser.email);
 
         // This verified if user EMAIL is verified
@@ -34,59 +34,59 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         )
 
 
-        return{success: 'Comfirmation email sent !'}
+        return { success: 'Comfirmation email sent !' }
     }
 
-    if(existingUser.isTwoFactorEnable && existingUser.email){
-        if(code){
+    if (existingUser.isTwoFactorEnable && existingUser.email) {
+        if (code) {
             const twoFactorToken = await getTowFactorTokenByEmail(
                 existingUser.email
             );
 
-            if(!twoFactorToken){
-                return {error: 'Invalid code!'}
+            if (!twoFactorToken) {
+                return { error: 'Invalid code!' }
             }
 
-            if(twoFactorToken.token !== code){
-                return {error: 'Invalid code!'}
+            if (twoFactorToken.token !== code) {
+                return { error: 'Invalid code!' }
             }
 
             const hasExpired = new Date(twoFactorToken.expire) < new Date();
 
-            if(hasExpired){
-                return {error: 'Code expired!'}
+            if (hasExpired) {
+                return { error: 'Code expired!' }
             }
 
             await db.towFactorToken.delete({
-                where: {id: twoFactorToken.id}
+                where: { id: twoFactorToken.id }
             });
 
             const existingConfirmation = await getTowFactorComfirmationByUserId(
                 existingUser.id
             )
 
-            if(existingConfirmation){
+            if (existingConfirmation) {
                 await db.towFactorConfirmation.delete({
-                    where: {id: existingConfirmation.id}
+                    where: { id: existingConfirmation.id }
                 });
             }
 
             await db.towFactorConfirmation.create({
                 data: {
                     userId: existingUser.id,
-                }       
+                }
             });
 
         }
 
-        else{
+        else {
             const twoFactorToken = await generateTowFactorToken(existingUser.email)
             await sendTowFactorTokenEmail(
                 twoFactorToken.email,
                 twoFactorToken.token,
             );
 
-            return { twoFactor: true};
+            return { twoFactor: true };
         }
     }
 
@@ -95,19 +95,19 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         await signIn('credentials', {
             email,
             password,
-            redirectTo: DEFAULT_LOGIN_REDIRECT,
+            redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
         })
-        
 
-    } catch ( error){
-        if(error instanceof AuthError){
+
+    } catch (error) {
+        if (error instanceof AuthError) {
             switch (error.type) {
                 case "CredentialsSignin":
-                    return{ error: 'Invalid Credentials !'}
+                    return { error: 'Invalid Credentials !' }
                 default:
-                    return{error: 'Something went Wrong !'}           
+                    return { error: 'Something went Wrong !' }
             }
         }
-        throw error;      
+        throw error;
     }
 };

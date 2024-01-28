@@ -7,6 +7,7 @@ import { CardIcon } from "@/components/icons/card-icon";
 import { MenuIcon } from "@/components/icons/menu-icon";
 import { useState } from 'react';
 import { CloseIcon } from "@/components/icons/close-icon";
+import { UserInfo } from "@/app/(protected)/_components/user-info";
 // import { useSession } from "next-auth/react";
 // import { signOut } from "next-auth/react";
 // import toast from 'react-hot-toast';

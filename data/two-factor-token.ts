@@ -19,11 +19,11 @@ export const towFactorTokenByToken = async (token: string) => {
 export const getTowFactorTokenByEmail = async (email: string) => {
     try {
 
-        const getTowFactorTokenByEmail = await db.towFactorToken.findFirst({
+        const getTowFactorToken = await db.towFactorToken.findFirst({
             where: { email}
         })
 
-        return getTowFactorTokenByEmail;
+        return getTowFactorToken;
         
     } catch{
         return null

@@ -44,6 +44,18 @@ export const authRoutes = [
 
 export const apiAuthPrefix = 'api/auth';
 
+/***
+ * 
+ * The default redirect path after logging in
+ * @type {String} 
+ * 
+ * 
+ * 
+ */
+
+
+// export const allPrivate = '/profile'
+
 
 /***
  * 
@@ -54,5 +66,5 @@ export const apiAuthPrefix = 'api/auth';
  * 
  */
 
-export const DEFAULT_LOGIN_REDIRECT = '/menus';
+export const DEFAULT_LOGIN_REDIRECT= '/menus';
 

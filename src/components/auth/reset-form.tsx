@@ -41,9 +41,16 @@ export function ResetForm() {
     setSuccess('');
 
     reset(values).then((data) => {
-      setError(data?.error);
-      // TODO: add when we add 2FA 
-      setSuccess(data?.success)
+      if (data?.error) {
+        form.reset();
+        setError(data?.error);
+      }
+
+      // This is For reset the FORM if the is a SUCCESS.
+      if (data?.success) {
+        form.reset();
+        setSuccess(data?.success)
+      }
 
     })
 
