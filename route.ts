@@ -11,7 +11,8 @@ export const publicRoutes = [
     '/about',
     '/contact',
     '/price',
-    '/new-verification'
+    '/new-verification',
+   
 ]
 
 
@@ -27,7 +28,9 @@ export const publicRoutes = [
 export const authRoutes = [
     '/login',
     '/register',
-    '/error'
+    '/error',
+    '/reset',
+    '/new-password'
 ]
 
 

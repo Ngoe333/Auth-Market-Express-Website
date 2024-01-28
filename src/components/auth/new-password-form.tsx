@@ -7,11 +7,10 @@ import { CardWrapper } from '@/components/ui/card-wrapper';
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/form-error';
 import { FormSuccess } from '@/components/form-success';
 import { cn } from "@/lib/utils";
-import { useSearchParams } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -22,33 +21,32 @@ import {
 
 
 } from '@/components/ui/form'
-import { LoginSchema } from '../../../schemas';
-import { useState } from 'react';
-import { login } from '../../../action/login'
+import { NewPasswordSchema } from '../../../schemas';
+import { useState, useTransition } from 'react';
+import { newPassword } from '../../../action/new-password';
+import { useSearchParams } from 'next/navigation';
 
-export function LoginForm() {
-  const searchParams = useSearchParams()
-  const urlError = searchParams.get('error') === 'OAuthAccountNotLinked'
-   ? 'Email already use with a diffrent provider': '';
+export function NewPasswordForm() {
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token');
 
 
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const [ isPending, starttransition] = useTransition();
+  const form = useForm<z.infer<typeof NewPasswordSchema>>({
+    resolver: zodResolver(NewPasswordSchema),
     defaultValues: {
-      email: "",
       password: "",
     }
   })
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
     setError('');
     setSuccess('');
 
-    login(values).then((data) => {
+    newPassword(values, token).then((data) => {
       setError(data?.error);
-      // TODO: add when we add 2FA 
       setSuccess(data?.success)
 
     })
@@ -59,10 +57,9 @@ export function LoginForm() {
 
     <div className=' mt-24'>
       <CardWrapper
-        headerLabel="Hi welcome back"
-        backButtonLabel="Don't have an account ?"
-        backButtonHref="/register"
-        showSocial
+        headerLabel="Enter a new password"
+        backButtonLabel="Back to login ?"
+        backButtonHref="/login"
       >
         <Form {...form}>
 
@@ -74,27 +71,6 @@ export function LoginForm() {
             <div className='space-y-4'>
               <FormField
                 control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder='marketexpress@gmail.com'
-                        type='email'
-                        className={cn(' bg-slate-100')}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-
-                )}
-              />
-
-              <FormField
-                control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
@@ -102,7 +78,7 @@ export function LoginForm() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder='*****'
+                        placeholder='******'
                         type='password'
                         className={cn(' bg-slate-100')}
                       />
@@ -115,10 +91,10 @@ export function LoginForm() {
               />
 
             </div>
-            <FormError message={error || urlError} />
+            <FormError message={error} />
             <FormSuccess message={success} />
             <Button type='submit' className='w-full'>
-              Login
+              Reset password
             </Button>
 
           </form>

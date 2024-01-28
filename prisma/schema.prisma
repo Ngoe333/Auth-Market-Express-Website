@@ -25,6 +25,8 @@ model User {
   password      String?
   role          UserRole @default(USER)
   accounts      Account[]
+  isTwoFactorEnable Boolean @default(false)
+  twoFactorComfirmtion TowFactorConfirmation?
 }
 
 model Account {
@@ -54,3 +56,32 @@ model VerificationToken{
   @@unique([email, token])
 
 }
+
+model PasswordResetToken{
+  id String @id @default(cuid()) @map("_id")
+  email String
+  token String @unique
+  expire DateTime
+
+  @@unique([email, token])
+}
+
+
+model TowFactorToken{
+  id String @id @default(cuid()) @map("_id")
+  email String
+  token String @unique
+  expire DateTime
+
+  @@unique([email, token])
+}
+
+model TowFactorConfirmation{
+  id String @id @default(cuid()) @map("_id")
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId])
+}
+
+

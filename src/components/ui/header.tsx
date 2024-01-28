@@ -109,6 +109,7 @@ export const Header = () => {
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer  text-lg font-semibold' href={"/order"}>Order</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/about"}>About</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/contact"}>Contact</Link>
+                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/profile"}>profile</Link>
               </ul>
 
               <Link onClick={() => setShowmenu(false)}

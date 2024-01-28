@@ -4,6 +4,7 @@ import { UserRole } from "@prisma/client";
 import {PrismaAdapter} from '@auth/prisma-adapter';
 import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
+import { getTowFactorComfirmationByUserId } from "./data/tow-factor-comfirmation"
 
 
 
@@ -22,7 +23,7 @@ export const {
     },
 
 
-    // When a user sign in with a provider like google or facebook we're making verified automatically
+    // When a user sign in with a provider like google or facebook we're making verified automatically because we trus the providers
     events : {
         async linkAccount({user}){
             await db.user.update({
@@ -43,6 +44,17 @@ export const {
 
             // prevent sigin without email verification
             if(!existingUser?.emailVerified) return false;
+
+            if(existingUser.isTwoFactorEnable) {
+                const twoFactorConfirmation = await getTowFactorComfirmationByUserId(existingUser.id)
+
+                if(!twoFactorConfirmation) return false;
+
+                await db.towFactorConfirmation.delete({
+                    where: {id: twoFactorConfirmation.id}
+                });
+
+            }
 
             return true
         },
