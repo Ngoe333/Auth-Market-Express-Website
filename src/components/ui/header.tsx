@@ -31,7 +31,7 @@ export const Header = () => {
 
   return (
     <div>
-      <header className="bg-gradient-to-r from-[#fefefe] from-0% to-[#FCFCFC] to-100% flex items-center justify-between z-100 shadow-md shadow-green-100 w-full fixed top-0 left-0 px-4  ">
+      <header className="bg-gradient-to-r from-[#dbd6d6] from-0% to-[#dbd6d6] to-100% flex items-center justify-between z-100 shadow-md shadow-green-100 w-full fixed top-0 left-0 px-4  ">
         <div>
           <Link href="/">
             <Image src="/LOGO.png" width={70} height={20} alt="logo" />
