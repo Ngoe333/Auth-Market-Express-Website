@@ -11,7 +11,7 @@ import { sendVerificationEmail, sendTowFactorTokenEmail } from '@/lib/mail';
 import { getTowFactorTokenByEmail } from '../data/two-factor-token';
 import { getTowFactorComfirmationByUserId } from '../data/tow-factor-comfirmation';
 import { db } from '@/lib/db';
-export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl? : string | null,) => {
+export const login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedFields = LoginSchema.safeParse(values);
     if (!validatedFields.success) {
         return { error: 'Invalid Field' }
@@ -95,7 +95,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl? : 
         await signIn('credentials', {
             email,
             password,
-            redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+            redirectTo: DEFAULT_LOGIN_REDIRECT,
         })
 
 

@@ -31,7 +31,7 @@ export function LoginForm() {
 
   // Thisn is for a USER that signup with PROVIDER and went to LOGIGN with the seem informations
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl');
+  // const callbackUrl = searchParams.get('callbackUrl');
   const urlError = searchParams.get('error') === 'OAuthAccountNotLinked'
     ? 'Email already use with a diffrent provider' : '';
 
@@ -50,7 +50,7 @@ export function LoginForm() {
     setError('');
     setSuccess('');
 
-    login(values, callbackUrl).then((data) => {
+    login(values).then((data) => {
 
       // This is For reset the FORM if the is and ERROR.
       if (data?.error) {
