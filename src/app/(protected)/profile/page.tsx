@@ -27,12 +27,12 @@ import { ExitIcon } from '@radix-ui/react-icons';
       </div>
 
       <div className=' mt-10'>
-        {JSON.stringify(user)}
+        {JSON.stringify(user?.name)}
         <form className=' mt-6 cursor-pointer'
         // await signOut();
         >
 
-          <button onClick={onClick} type='submit' className=' bg-lime-300 px-4 py-2 text-black cursor-pointer text-sm rounded flex items-center justify-center h-full'>
+          <button onClick={onClick} type='submit' className=' bg-slate-300 px-4 py-2 shadow-md text-black cursor-pointer text-sm rounded flex items-center justify-center h-full'>
           <ExitIcon className=' h-4 w-4 mr-2' />
             Sign-out
           </button>
