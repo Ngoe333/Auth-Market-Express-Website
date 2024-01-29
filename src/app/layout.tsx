@@ -27,7 +27,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en">
         <body className={inter.className}>
-          <main className="md:max-w-7xl mx-auto bg-[#FCFCFC] p-4 h-full">
+          <main className="md:max-w-7xl mx-auto bg-[#FCFCFC] p-4 h-full ">
             <Header />
             {children}
             <Footer />

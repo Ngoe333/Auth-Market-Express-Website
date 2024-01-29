@@ -36,7 +36,7 @@ export const Header = () => {
       <header className="bg-gradient-to-r from-[#dbd6d6] from-0% to-[#dbd6d6] to-100% flex items-center justify-between z-100 shadow-md shadow-green-100 w-full fixed top-0 left-0 px-4  ">
         <div>
           <Link href="/">
-            <Image src="/LOGO.png" width={70} height={20} alt="logo" />
+            <Image src="/LOGO.png" width={70} height={20} alt="logo" className=" cursor-pointer" />
           </Link>
         </div>
 
@@ -106,7 +106,7 @@ export const Header = () => {
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer  text-lg font-semibold' href={"/order"}>Order</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/about"}>About</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/contact"}>Contact</Link>
-                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/profile"}>profile</Link>
+                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/profile"}>Profile</Link>
               </ul>
 
               <Link onClick={() => setShowmenu(false)}
