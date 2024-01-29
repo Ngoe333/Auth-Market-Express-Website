@@ -7,15 +7,17 @@ import { CardIcon } from "@/components/icons/card-icon";
 import { MenuIcon } from "@/components/icons/menu-icon";
 import { useState } from 'react';
 import { CloseIcon } from "@/components/icons/close-icon";
+import { UseCurrentUser } from "../../../hooks/use-current-user";
 import { UserInfo } from "@/app/(protected)/_components/user-info";
-// import { useSession } from "next-auth/react";
-// import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+// import {auth} from '../../../auth';
 // import toast from 'react-hot-toast';
 
 export const Header = () => {
+  const user = UseCurrentUser();
 
-  // const session = useSession();
-  // const status = session.status;
+  const session = useSession();
+  const status = session.status;
   // const userData = session.data?.user;
   // let userName = userData?.name || userData?.email;
   // if (userName && userName.includes(' ')) {
@@ -55,34 +57,28 @@ export const Header = () => {
           <CardIcon />
         </div>
 
-        <Link 
+        <Link
           href="/login"
-          className="text-white gap-1 bg-[#91e2af] px-6 py-2 rounded-full shadow-md absolute right-8 "
+          className="md:text-white gap-1 bg-[#91e2af] px-6 py-2 rounded-full shadow-md absolute right-8 "
         >
           Login </Link>
 
 
-        <nav className="flex items-center gap-4 font-semibold">
-          {/* {status === "authenticated" && (
-
-            <>
-              <Link href='/profile' className="whitespace-nowrap">Hi, {userName}</Link>
-
-
-
-            </>
-          )} */}
+        <nav className="flex items-center gap-4">
+          {status === "authenticated" && (
+            <UserInfo />
+          )}
 
           {/* ---- Use not authenticated show sign-in----     */}
-          {/* {status === "unauthenticated" && (
+          {status === "unauthenticated" && (
 
             <Link
-              href="/sign-in"
-              className="hidden flex items-center text-white gap-1 bg-[#91e2af] px-6 py-2 rounded-full shadow-md absolute right-20 md:right-16 "
+              href="/login"
+              className="text-white gap-1 bg-[#91e2af] px-6 py-2 rounded-full shadow-md absolute right-8 "
             >
               Login </Link>
 
-          )} */}
+          )}
 
 
         </nav>

@@ -15,7 +15,7 @@ const MenuPage = async () => {
       </div>
 
       <div className=' mt-10'>
-        {JSON.stringify(session)}
+        {JSON.stringify(session?.user.name)}
       </div>
 
 
