@@ -14,7 +14,6 @@ export default auth((req) => {
     const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix);
     const IsPublicRoutes = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
-    // const isPrivate = allPrivate.includes(nextUrl.pathname);
 
     if(isApiAuthRoutes){
         return null;
@@ -31,9 +30,7 @@ export default auth((req) => {
         return Response.redirect(new URL('/login', nextUrl))
 
     }
-    // if(!isLogging && !IsPublicRoutes){
-    //     return Response.redirect(new URL('/profile', nextUrl))
-    // 
+   
     return null;
     
 

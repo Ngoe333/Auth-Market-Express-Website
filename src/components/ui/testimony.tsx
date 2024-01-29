@@ -7,7 +7,6 @@ export function Testimonials() {
             <div className=" flex flex-col items-center justify-center mt-20 bg-slate-100 px-4">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-left">
                     <div className="md:w-1/2">
-                        {/* <img src="/testimonials.png" alt="" /> */}
                         <Image src={'/testimonials.png'} width={400} height={400} alt="" />
                     </div>
                     <div className="md:w-1/2">
