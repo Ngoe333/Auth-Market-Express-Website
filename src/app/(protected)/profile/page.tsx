@@ -11,7 +11,7 @@ import { ExitIcon } from '@radix-ui/react-icons';
   const user = UseCurrentUser();
 
   const onClick = () => {
-     signOut({callbackUrl :'/login'});
+     signOut();
   }
 
   return (
@@ -20,7 +20,7 @@ import { ExitIcon } from '@radix-ui/react-icons';
       <h2 className='text-4xl text-green-500 font-semibold'>Profile Page</h2>
 
       <div className='mt-4'>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi nam cum rerum at.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisicum rerum at.
         Mollitia officiis expedita fugit sit provident dignissimos placeat voluptate nostrum asperiores,
         reiciendis nobis harum et delectus enim cupiditate voluptatibus veritatis! Totam quisquam magnam
         commodi tenetur placeat corporis.
@@ -28,16 +28,15 @@ import { ExitIcon } from '@radix-ui/react-icons';
 
       <div className=' mt-10'>
         {JSON.stringify(user?.name)}
-        <form className=' mt-6 cursor-pointer'
         // await signOut();
-        >
+        
 
           <button onClick={onClick} type='submit' className=' bg-slate-300 px-4 py-2 shadow-md text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-full'>
           <ExitIcon className=' h-4 w-4 mr-2' />
             Sign-out
           </button>
 
-        </form>
+        
 
       </div>
 
