@@ -84,7 +84,7 @@ export function ResetForm() {
                         placeholder='marketexpress@gmail.com'
                         type='email'
                      
-                        className={cn(' bg-slate-100')}
+                        className={cn(' bg-white')}
                       />
                     </FormControl>
 

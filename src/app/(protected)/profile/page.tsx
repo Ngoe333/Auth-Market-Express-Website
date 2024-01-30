@@ -32,7 +32,7 @@ import { ExitIcon } from '@radix-ui/react-icons';
         // await signOut();
         >
 
-          <button onClick={onClick} type='submit' className=' bg-slate-300 px-4 py-2 shadow-md text-black cursor-pointer text-sm rounded flex items-center justify-center h-full'>
+          <button onClick={onClick} type='submit' className=' bg-slate-300 px-4 py-2 shadow-md text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-full'>
           <ExitIcon className=' h-4 w-4 mr-2' />
             Sign-out
           </button>

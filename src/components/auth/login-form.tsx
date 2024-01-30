@@ -104,7 +104,7 @@ export function LoginForm() {
                         <Input
                           {...field}
                           placeholder='123456'
-                          className={cn(' bg-slate-100')}
+                          className={cn(' bg-white')}
                         />
                       </FormControl>
 
@@ -128,7 +128,7 @@ export function LoginForm() {
                             {...field}
                             placeholder='marketexpress@gmail.com'
                             type='email'
-                            className={cn(' bg-slate-100')}
+                            className={cn(' bg-white')}
                           />
                         </FormControl>
 
@@ -149,7 +149,7 @@ export function LoginForm() {
                             {...field}
                             placeholder='*****'
                             type='password'
-                            className={cn(' bg-slate-100')}
+                            className={cn(' bg-white')}
                           />
                         </FormControl>
 

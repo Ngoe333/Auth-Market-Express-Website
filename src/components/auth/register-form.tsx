@@ -86,7 +86,7 @@ export function RegisterForm() {
                         {...field}
                         placeholder='Lovett Essouma'
                         type='text'
-                        className={cn(' bg-slate-100')}
+                        className={cn(' bg-white')}
                       />
                     </FormControl>
 
@@ -108,7 +108,7 @@ export function RegisterForm() {
                         {...field}
                         placeholder='marketexpress@gmail.com'
                         type='email'
-                        className={cn(' bg-slate-100')}
+                        className={cn(' bg-white')}
                       />
                     </FormControl>
 
@@ -129,7 +129,7 @@ export function RegisterForm() {
                         {...field}
                         placeholder='*****'
                         type='password'
-                        className={cn(' bg-slate-100')}
+                        className={cn(' bg-white')}
                       />
                     </FormControl>
 

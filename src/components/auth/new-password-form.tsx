@@ -80,7 +80,7 @@ export function NewPasswordForm() {
                         {...field}
                         placeholder='******'
                         type='password'
-                        className={cn(' bg-slate-100')}
+                        className={cn(' bg-white')}
                       />
                     </FormControl>
 
