@@ -4,10 +4,10 @@ import * as z from 'zod';
 import { db } from "@/lib/db";
 import { getUserById } from "../data/user";
 import { UseCurrentUser } from "../hooks/use-current-user";
-import { SettingSchema } from "../schemas";
+import { SettingsSchema } from "../schemas";
 
 
-export const settings = async (values: z.infer<typeof SettingSchema>) => {
+export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     const user =  UseCurrentUser();
     if(!user) return {error: 'Unauthorized'};
 
@@ -16,7 +16,7 @@ export const settings = async (values: z.infer<typeof SettingSchema>) => {
      if(!dbUser) return {error: 'Unauthorized'};
 
      await db.user.update({
-        where: {id: dbUser.id}
+        where: {id: dbUser.id},
         data: {
             ...values,
         }

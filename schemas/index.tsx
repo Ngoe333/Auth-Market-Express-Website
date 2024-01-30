@@ -18,7 +18,7 @@ export const ResetSchema = z.object({
 
 
 
-export const SettingSchema = z.object({
+export const SettingsSchema = z.object({
     name: z.optional(z.string() || z.undefined())
 });
 
