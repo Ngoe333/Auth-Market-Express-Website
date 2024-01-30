@@ -10,8 +10,8 @@ import { ExitIcon } from '@radix-ui/react-icons';
  function ProfilePage() {
   const user = UseCurrentUser();
 
-  const onClick = async () => {
-    await signOut();
+  const onClick = () => {
+     signOut({callbackUrl :'/login'});
   }
 
   return (
