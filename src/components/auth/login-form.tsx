@@ -12,6 +12,7 @@ import { FormSuccess } from '@/components/form-success';
 import { cn } from "@/lib/utils";
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
+import { useTransition } from 'react';
 import Link from 'next/link';
 import {
   Form,
@@ -28,6 +29,8 @@ import { useState } from 'react';
 import { login } from '../../../action/login';
 
 export function LoginForm() {
+
+  const [ ispadding, startTransition] = useTransition()
 
   // Thisn is for a USER that signup with PROVIDER and went to LOGIGN with the seem informations
   const searchParams = useSearchParams();
@@ -49,6 +52,10 @@ export function LoginForm() {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError('');
     setSuccess('');
+
+    startTransition(() => {
+      
+    })
 
     login(values).then((data) => {
 

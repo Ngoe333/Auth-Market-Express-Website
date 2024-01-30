@@ -17,6 +17,12 @@ export const ResetSchema = z.object({
 }); 
 
 
+
+export const SettingSchema = z.object({
+    name: z.optional(z.string() || z.undefined())
+});
+
+
 export const LoginSchema = z.object({
     email: z.string().email({
         message: 'Email is required',
