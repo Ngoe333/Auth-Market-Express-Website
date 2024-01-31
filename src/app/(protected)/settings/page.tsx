@@ -13,7 +13,8 @@ import { useTransition } from 'react';
 import { useSession } from 'next-auth/react';
 import { SettingsSchema } from '../../../../schemas';
 import { useState } from 'react';
-import { UseCurrentUser } from '../../../../hooks/use-current-user';
+import { FormSuccess } from '@/components/form-success';
+import { FormError } from '@/components/form-error';
 import {
   Form,
   FormItem,
@@ -97,6 +98,8 @@ function SettingsPage() {
                 )}
               />
             </div>
+            <FormError message={error}/>
+            <FormSuccess message={success}/>
             <Button type='submit'>
               Save
             </Button>
