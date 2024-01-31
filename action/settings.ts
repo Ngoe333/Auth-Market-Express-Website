@@ -22,4 +22,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
         }
      });
 
+
+     return {success: 'Settings updated!'}
+
 }
