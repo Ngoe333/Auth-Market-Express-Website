@@ -53,13 +53,13 @@ export function RegisterForm() {
         setSuccess(data?.success)
       }
     })
-    .catch(() => setError('Something went wrong!'));
+      .catch(() => setError('Something went wrong!'));
 
   }
 
   return (
     <div className=' mt-24'>
-      
+
       <CardWrapper
         headerLabel="Create an account"
         backButtonLabel="Already have an account ?"
@@ -139,6 +139,48 @@ export function RegisterForm() {
                 )}
               />
 
+              <FormField
+                control={form.control}
+                name="adresse"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Adresse</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder='Bonamoussadi'
+                        type='text'
+                        className={cn(' bg-white')}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder='237-657-899-435'
+                        type='text'
+                        className={cn(' bg-white')}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+
+                )}
+              />
+
             </div>
             <FormError message={error} />
             <FormSuccess message={success} />
@@ -150,7 +192,7 @@ export function RegisterForm() {
 
         </Form>
 
-      </CardWrapper> 
+      </CardWrapper>
 
     </div>
 

@@ -43,8 +43,7 @@ function SettingsPage() {
       name: user?.name || undefined,
       email: user?.email || undefined,
       adresse: undefined,
-      password: undefined,
-      newpassword: undefined,
+
     }
   })
 
@@ -137,9 +136,10 @@ function SettingsPage() {
                       <Input
 
                         {...field}
-                        placeholder='Market Express'
+                        placeholder='Akwa'
                         disabled={isPending}
                         className={cn('bg-white')}
+                        type='text'
                       />
                     </FormControl>
 
@@ -150,18 +150,18 @@ function SettingsPage() {
 
               <FormField
                 control={form.control}
-                name="password"
+                name="phoneNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Phone Number</FormLabel>
                     <FormControl>
                       <Input
 
                         {...field}
-                        placeholder='******'
+                        placeholder='237-657-899-435'
                         disabled={isPending}
                         className={cn('bg-white')}
-                        type='password'
+                        type='text'
                       />
                     </FormControl>
 
@@ -170,27 +170,6 @@ function SettingsPage() {
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="newpassword"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>New Password</FormLabel>
-                    <FormControl>
-                      <Input
-
-                        {...field}
-                        placeholder='******'
-                        disabled={isPending}
-                        className={cn('bg-white')}
-                        type='password'
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
 
               <FormField
                 control={form.control}
@@ -210,12 +189,12 @@ function SettingsPage() {
 
                     <FormControl>
                       <Switch
-                      disabled={isPending} 
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
+                        disabled={isPending}
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
                     </FormControl>
-                    
+
                   </FormItem>
                 )}
               />

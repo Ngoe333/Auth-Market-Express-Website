@@ -101,6 +101,8 @@ export const {
             token.isOAuth = !!existingAccount;
             token.name = existingUser.name;
             token.email = existingUser.email;
+            token.adresse = existingUser.adresse;
+            token.phone = existingUser.phoneNumber;
             token.role = existingUser.role;
             return token;
         }

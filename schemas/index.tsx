@@ -24,24 +24,10 @@ export const SettingsSchema = z.object({
     isTwoFactorEnabled: z.optional(z.boolean()),
     email: z.optional(z.string().email()),
     adresse: z.optional(z.string()),
-    password: z.optional(z.string().min(6)),
-    newpassword: z.optional(z.string().min(6)),
-}).refine((data) => {
-    if(data.password && !data.newpassword){
-        return false;
-    }
-
-    if(data.newpassword && !data.password){
-        return false;
-    }
-
-    return true;
-   
-},  {
-    message: 'Password is required!',
-    path: ['password']
-
+    phoneNumber: z.optional(z.string()),
 });
+
+
 
 
 export const LoginSchema = z.object({
@@ -68,7 +54,16 @@ export const RegisterSchema = z.object({
     }),
 
     password: z.string().min(6,{
-        message: 'Minimum 6 characrters required',
+        message: 'Minimum 6 characters required',
     }),
+
+    adresse: z.string().min(0,{
+        message: 'Minimum 3 characters required',
+    }),
+
+    phoneNumber: z.string().min(8,{
+        message: 'Minimum 18 numbers required',
+    }),
+
 
 });
