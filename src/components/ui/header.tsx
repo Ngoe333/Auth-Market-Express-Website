@@ -7,14 +7,14 @@ import { CardIcon } from "@/components/icons/card-icon";
 import { MenuIcon } from "@/components/icons/menu-icon";
 import { useState } from 'react';
 import { CloseIcon } from "@/components/icons/close-icon";
-import { UseCurrentUser } from "../../../hooks/use-current-user";
+import { useCurrentUser } from "../../../hooks/use-current-user";
 import { UserInfo } from "@/app/(protected)/_components/user-info";
 import { useSession } from "next-auth/react";
 // import {auth} from '../../../auth';
 // import toast from 'react-hot-toast';
 
 export const Header = () => {
-  const user = UseCurrentUser();
+  const user = useCurrentUser();
 
   const session = useSession();
   const status = session.status;

@@ -3,18 +3,18 @@
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UseCurrentUser } from '../../../../hooks/use-current-user';
 import { signOut } from 'next-auth/react';
 import { ExitIcon } from '@radix-ui/react-icons';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { settings } from '../../../../action/settings';
-import { useTransition } from 'react';
+import { useTransition, useState} from 'react';
 import { useSession } from 'next-auth/react';
 import { SettingsSchema } from '../../../../schemas';
-import { useState } from 'react';
 import { FormSuccess } from '@/components/form-success';
 import { FormError } from '@/components/form-error';
+import { cn } from '@/lib/utils';
+import { useCurrentUser } from '../../../../hooks/use-current-user';
 import {
   Form,
   FormItem,
@@ -34,7 +34,7 @@ function SettingsPage() {
   const [success, setSuccess] = useState<string | undefined>();
   const [isPending, startTransition] = useTransition();
   const { update } = useSession();
-  const user = UseCurrentUser();
+  const user = useCurrentUser();
 
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
@@ -69,9 +69,9 @@ function SettingsPage() {
   }
 
   return (
-    <Card className=' max-w[400px] text-center mt-32'>
+    <Card className=' max-w[400px]  mt-32'>
       <CardHeader>
-        <h2 className='text-2xl text-green-500 font-semibold'>Settings</h2>
+        <h2 className='text-2xl text-green-500 font-semibold text-center'>Settings</h2>
       </CardHeader>
 
       <CardContent>
@@ -91,6 +91,8 @@ function SettingsPage() {
                         {...field}
                         placeholder='Market Express'
                         disabled={isPending}
+                        className={cn('bg-white')}
+                        
 
                       />
                     </FormControl>
@@ -100,7 +102,7 @@ function SettingsPage() {
             </div>
             <FormError message={error}/>
             <FormSuccess message={success}/>
-            <Button type='submit'>
+            <Button disabled={isPending} type='submit'>
               Save
             </Button>
 

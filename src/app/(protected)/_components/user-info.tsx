@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { FaUser } from 'react-icons/fa';
-import { UseCurrentUser } from '../../../../hooks/use-current-user';
+import { useCurrentUser } from '../../../../hooks/use-current-user';
 
 export const UserInfo = () => {
-    const user = UseCurrentUser();
+    const user = useCurrentUser();
 
 
 

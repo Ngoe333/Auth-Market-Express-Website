@@ -54,7 +54,7 @@ export function LoginForm() {
     setSuccess('');
 
     startTransition(() => {
-      
+
     })
 
     login(values).then((data) => {
@@ -91,6 +91,7 @@ export function LoginForm() {
         backButtonLabel="Don't have an account ?"
         backButtonHref="/register"
         showSocial
+        
       >
         <Form {...form}>
 
@@ -111,7 +112,7 @@ export function LoginForm() {
                         <Input
                           {...field}
                           placeholder='123456'
-                          className={cn(' bg-white')}
+                          className={cn('bg-white')}
                         />
                       </FormControl>
 
