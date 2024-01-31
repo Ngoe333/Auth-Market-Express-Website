@@ -8,13 +8,14 @@ import { ExitIcon } from '@radix-ui/react-icons';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { settings } from '../../../../action/settings';
-import { useTransition, useState} from 'react';
+import { useTransition, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { SettingsSchema } from '../../../../schemas';
 import { FormSuccess } from '@/components/form-success';
 import { FormError } from '@/components/form-error';
 import { cn } from '@/lib/utils';
 import { useCurrentUser } from '../../../../hooks/use-current-user';
+import { Switch } from '@radix-ui/react-switch';
 import {
   Form,
   FormItem,
@@ -40,6 +41,10 @@ function SettingsPage() {
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
       name: user?.name || undefined,
+      email: user?.email || undefined,
+      adresse: undefined,
+      password: undefined,
+      newpassword: undefined,
     }
   })
 
@@ -92,16 +97,131 @@ function SettingsPage() {
                         placeholder='Market Express'
                         disabled={isPending}
                         className={cn('bg-white')}
-                        
-
                       />
                     </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+
+                        {...field}
+                        placeholder='Marketexpress@gmail.com'
+                        disabled={isPending}
+                        className={cn('bg-white')}
+                        type='email'
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="adresse"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Adresse</FormLabel>
+                    <FormControl>
+                      <Input
+
+                        {...field}
+                        placeholder='Market Express'
+                        disabled={isPending}
+                        className={cn('bg-white')}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+
+                        {...field}
+                        placeholder='******'
+                        disabled={isPending}
+                        className={cn('bg-white')}
+                        type='password'
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="newpassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>New Password</FormLabel>
+                    <FormControl>
+                      <Input
+
+                        {...field}
+                        placeholder='******'
+                        disabled={isPending}
+                        className={cn('bg-white')}
+                        type='password'
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="isTwoFactorEnabled"
+                render={({ field }) => (
+                  <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
+                    <div className='space-y-0.5'>
+                      <FormLabel>
+                        Two Factor Authentication
+                      </FormLabel>
+
+                      <FormDescription>
+                        Enable two factor uathentication for your account
+                      </FormDescription>
+
+                    </div>
+
+                    <FormControl>
+                      <Switch
+                      disabled={isPending} 
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                    </FormControl>
+                    
                   </FormItem>
                 )}
               />
             </div>
-            <FormError message={error}/>
-            <FormSuccess message={success}/>
+            <FormError message={error} />
+            <FormSuccess message={success} />
             <Button disabled={isPending} type='submit'>
               Save
             </Button>
@@ -112,7 +232,7 @@ function SettingsPage() {
 
       </CardContent>
 
-      <button onClick={onClick} type='submit' className=' bg-slate-300 px-4 py-2 shadow-md mx-auto mt-4 text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-[150px]'>
+      <button onClick={onClick} type='submit' className=' bg-slate-300 mb-2 px-4 py-2 shadow-md mx-auto mt-4 text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-[120px]'>
         <ExitIcon className=' h-4 w-4 mr-2' />
         Sign-out
       </button>

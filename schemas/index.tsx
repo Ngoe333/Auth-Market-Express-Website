@@ -1,3 +1,4 @@
+import { truncateSync } from 'fs';
 import * as z from 'zod';
 
 export const NewPasswordSchema = z.object({
@@ -19,7 +20,27 @@ export const ResetSchema = z.object({
 
 
 export const SettingsSchema = z.object({
-    name: z.optional(z.string() || z.undefined())
+    name: z.optional(z.string() || z.undefined()),
+    isTwoFactorEnabled: z.optional(z.boolean()),
+    email: z.optional(z.string().email()),
+    adresse: z.optional(z.string()),
+    password: z.optional(z.string().min(6)),
+    newpassword: z.optional(z.string().min(6)),
+}).refine((data) => {
+    if(data.password && !data.newpassword){
+        return false;
+    }
+
+    if(data.newpassword && !data.password){
+        return false;
+    }
+
+    return true;
+   
+},  {
+    message: 'Password is required!',
+    path: ['password']
+
 });
 
 
