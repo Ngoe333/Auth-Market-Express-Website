@@ -8,6 +8,7 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "../../auth";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -31,6 +32,10 @@ export default async function RootLayout({
             <Header />
             {children}
             <Footer />
+            <Toaster
+              position="bottom-center"
+              reverseOrder={false}
+            />
           </main>
         </body>
       </html>

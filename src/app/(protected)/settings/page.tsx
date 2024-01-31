@@ -16,6 +16,7 @@ import { FormError } from '@/components/form-error';
 import { cn } from '@/lib/utils';
 import { useCurrentUser } from '../../../../hooks/use-current-user';
 import { Switch } from '@radix-ui/react-switch';
+import toast from 'react-hot-toast';
 import {
   Form,
   FormItem,
@@ -42,6 +43,7 @@ function SettingsPage() {
     defaultValues: {
       name: user?.name || undefined,
       email: user?.email || undefined,
+      isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
       adresse: undefined,
 
     }
@@ -54,11 +56,13 @@ function SettingsPage() {
         .then((data) => {
           if (data.error) {
             setError(data.error)
+            toast.error('Something went wrong! !')
           }
 
           if (data.success) {
             update();
             setSuccess(data.success)
+            toast.success('Update successfully !')
           }
 
         }).catch(() => setError('Something went wrong!'));
@@ -175,13 +179,13 @@ function SettingsPage() {
                 control={form.control}
                 name="isTwoFactorEnabled"
                 render={({ field }) => (
-                  <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
+                  <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm '>
                     <div className='space-y-0.5'>
                       <FormLabel>
                         Two Factor Authentication
                       </FormLabel>
 
-                      <FormDescription>
+                      <FormDescription className='bg-white'>
                         Enable two factor uathentication for your account
                       </FormDescription>
 
@@ -194,7 +198,6 @@ function SettingsPage() {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-
                   </FormItem>
                 )}
               />
