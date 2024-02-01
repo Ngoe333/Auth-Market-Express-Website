@@ -50,7 +50,7 @@ export const Header = () => {
         
 
         <Link href='/card'>
-          <div className="absolute right-48 cursor-pointer md:right-24 xl:right-48 ">
+          <div className="absolute flex items-center justify-center right-48 cursor-pointer md:right-24 xl:right-48 ">
             <CardIcon />
           </div>
         </Link>
