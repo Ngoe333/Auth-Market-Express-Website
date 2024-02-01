@@ -89,7 +89,7 @@ export function LoginForm() {
 
     <div className=' mt-24'>
       <CardWrapper
-        headerLabel="Hi welcome back"
+        headerLabel="Hi welcome back login to your account"
         backButtonLabel="Don't have an account ?"
         backButtonHref="/register"
         showSocial
