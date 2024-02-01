@@ -1,6 +1,6 @@
 
 
-export const SettingsPage = () => {
+const SettingsPage = () => {
 
   return (
 
@@ -8,3 +8,5 @@ export const SettingsPage = () => {
   )
 
 }
+
+export default SettingsPage;
