@@ -26,7 +26,7 @@ export const DialogButton = () => {
 
             <DialogContent className="sm:max-w-[200px] h-[320px]">
                 <DialogHeader>
-                    <DialogTitle className=" text-center text-black space-y-1 text-2xl">Please Login or Register to order</DialogTitle>
+                    <DialogTitle className=" text-center text-black space-y-1 text-2xl">Please Login or Register to orde items</DialogTitle>
                 </DialogHeader>
                 <div className="w-full h-full flex items-center justify-center gap-2">
                     <Link href='/login' className=" bg-slate-100 shadow-md rounded py-2 px-4">Login</Link>
