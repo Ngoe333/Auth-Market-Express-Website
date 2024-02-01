@@ -44,6 +44,7 @@ function SettingsPage() {
       name: user?.name || undefined,
       email: user?.email || undefined,
       adresse: undefined,
+      phoneNumber: undefined,
 
     }
   })
@@ -142,7 +143,6 @@ function SettingsPage() {
                         placeholder='Akwa'
                         disabled={isPending}
                         className={cn('bg-white')}
-                        type='text'
                       />
                     </FormControl>
 

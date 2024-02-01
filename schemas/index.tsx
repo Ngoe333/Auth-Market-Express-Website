@@ -20,7 +20,7 @@ export const ResetSchema = z.object({
 
 
 export const SettingsSchema = z.object({
-    name: z.optional(z.string() || z.undefined()),
+    name: z.optional(z.string()),
     isTwoFactorEnabled: z.optional(z.boolean()),
     email: z.optional(z.string().email()),
     adresse: z.optional(z.string()),
