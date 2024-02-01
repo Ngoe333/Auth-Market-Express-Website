@@ -13,8 +13,8 @@ export function Footer() {
                 </aside> */}
                 <nav className=' flex flex-col'>
                     <header className="footer-title mt-2">USEFUL LINKS</header>
-                    <a className="link link-hover  flex flex-col items-center justify-center">Menus</a>
-                    <a className="link link-hover  flex flex-col items-center justify-center">Order</a>
+                    <Link href='/menus' className="link link-hover  flex flex-col items-center justify-center">Menus</Link>
+                    <Link href='/order' className="link link-hover  flex flex-col items-center justify-center">Order</Link>
                 </nav>
                 <nav>
                     <header className="footer-title mt-2">Company</header>
