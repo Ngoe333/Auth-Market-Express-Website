@@ -28,7 +28,7 @@ import { useState, useTransition } from 'react';
 import { login } from '../../../action/login';
 
 export function LoginForm() {
-  const [isPending, startTransition] = useTransition()
+  const [ isPending, startTransition] = useTransition()
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
@@ -48,12 +48,13 @@ export function LoginForm() {
   })
 
 
-  startTransition(() => {
+ 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
       setError('');
       setSuccess('');
 
 
+    startTransition(() => {
       login(values).then((data) => {
 
         // This is For reset the FORM if the is and ERROR.
@@ -61,27 +62,28 @@ export function LoginForm() {
           form.reset();
           setError(data?.error);
         }
-
+  
         // This is For reset the FORM if the is a SUCCESS.
         if (data?.success) {
           form.reset();
           setSuccess(data?.success)
         }
-
-
+  
+  
         // Were not gonna reset the form because USER need dose credentials if the have the 2FA code.
         if (data?.twoFactor) {
           setShowTwoFactor(true)
         }
-
+  
       })
-        .catch(() => setError('Something went wrong!'));
+      .catch(() => setError('Something went wrong!'));
 
-    }
+    })
 
-  })
+   
 
 
+  }
 
   return (
 
@@ -91,7 +93,7 @@ export function LoginForm() {
         backButtonLabel="Don't have an account ?"
         backButtonHref="/register"
         showSocial
-
+        
       >
         <Form {...form}>
 
