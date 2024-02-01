@@ -50,7 +50,7 @@ export const Header = () => {
         
 
         <Link href='/card'>
-          <div className="absolute flex items-center justify-center right-48 cursor-pointer md:right-24 xl:right-48 ">
+          <div className="absolute right-48 cursor-pointer md:right-24 xl:right-48 ">
             <CardIcon />
           </div>
         </Link>
@@ -59,17 +59,12 @@ export const Header = () => {
 
         {
           status === "unauthenticated" && (
-            <div className=" flex items-center gap-x-2 justify-center relative w-full h-full">
-
-              <h2 className=' absolute flex  items-center justify-center w-full h-full font-semibold text-2xl -right-16  md: '>🖐️Hi...</h2>
-
+          
               <Link
                 href="/login"
                 className="hidden md:block text-white gap-1 bg-[#91e2af] px-6 py-2 rounded-full shadow-md absolute right-8 "
               >
                 Login </Link>
-
-            </div>
 
           )}
 
