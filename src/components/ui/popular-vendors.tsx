@@ -48,7 +48,7 @@ export const PopularVendors = () => {
                 </div>
               </div>
             ))}
-            ,
+            
             {categoryItems.map((item, i) => (
               <div
                 key={i}
@@ -70,7 +70,7 @@ export const PopularVendors = () => {
                 </div>
               </div>
             ))}
-            ,
+            
             {categoryItems.map((item, i) => (
               <div
                 key={i}
@@ -91,7 +91,7 @@ export const PopularVendors = () => {
                 </div>
               </div>
             ))}
-            ,
+            
           </div>
 
           {/* <Videobutton /> */}
