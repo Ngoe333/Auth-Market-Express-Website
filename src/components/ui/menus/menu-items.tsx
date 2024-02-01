@@ -10,7 +10,7 @@ export const MenuItem = () => {
   const status = session.status;
   return (
     <div>
-      <div className="bg-slate-200 rounded-lg text-cente p-4 flex items-center justify-center flex-col shadow-md hover:-translate-y-4 duration-300 transition-all">
+      <div className="bg-slate-200 rounded-lg text-cente p-4 flex items-center justify-center flex-col shadow-md">
         <div className="">
           <img
             src="/Modified.png"
