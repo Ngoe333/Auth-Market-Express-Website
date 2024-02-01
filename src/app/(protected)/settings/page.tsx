@@ -201,8 +201,7 @@ function SettingsPage() {
                   </FormItem>
                 )}
               />
-            </div>
-            
+            </div>           
             <FormError message={error} />
             <FormSuccess message={success} />
             <Button disabled={isPending} type='submit'>
