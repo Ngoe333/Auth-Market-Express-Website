@@ -26,10 +26,9 @@ export const Hero = () => {
                                 Explore <RightIcon />{" "}
                             </button>
 
-                            <button className=" flex gap-4 text-black items-center bg-green-100 px-6 py-2 font-semibold rounded-full shadow-inner -mb-6">
-                                Video <VideoIcon />
-                                <DialogVideo />
-                            </button>
+                           <div>
+                            <DialogVideo />
+                           </div>
                         </div>
                     </div>
 
