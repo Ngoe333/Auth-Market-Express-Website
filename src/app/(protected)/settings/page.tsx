@@ -43,8 +43,8 @@ function SettingsPage() {
     defaultValues: {
       name: user?.name || undefined,
       email: user?.email || undefined,
-      isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
-      adresse: undefined,
+      // isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
+      // adresse: undefined,
 
     }
   })
