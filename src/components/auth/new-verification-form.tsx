@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 // import { useState } from 'react';
 import { FormError } from '../../components/form-error'
 import { FormSuccess } from '../../components/form-success'
+import toast from 'react-hot-toast';
 
 
 
@@ -29,9 +30,10 @@ export function NewVerificationForm() {
 
     newVerificationToken(token).then((data) => {
       setSuccess(data.success);
+      toast.success('Email verify successfully !')
       setTimeout(() => {
         router.push('/login')
-      }, 2000)
+      }, 3000)
      
       setError(data.error);
     }).catch(() => {
