@@ -1,3 +1,6 @@
+'use client';
+
+
 import { CardButton } from "@/components/icons/card-button-icon";
 import { DialogButton } from "../dialog-button";
 import { useSession } from "next-auth/react";
