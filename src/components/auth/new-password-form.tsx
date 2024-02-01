@@ -25,6 +25,8 @@ import { NewPasswordSchema } from '../../../schemas';
 import { useState, useTransition } from 'react';
 import { newPassword } from '../../../action/new-password';
 import { useSearchParams } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export function NewPasswordForm() {
   const searchParams = useSearchParams();
@@ -34,6 +36,7 @@ export function NewPasswordForm() {
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
   const [ isPending, starttransition] = useTransition();
+  const router = useRouter();
   const form = useForm<z.infer<typeof NewPasswordSchema>>({
     resolver: zodResolver(NewPasswordSchema),
     defaultValues: {
@@ -47,6 +50,10 @@ export function NewPasswordForm() {
 
     newPassword(values, token).then((data) => {
       setError(data?.error);
+      toast.success('Password update succesffuly!')
+      setTimeout(() => {
+        router.push('/login')
+      }, 4000)
       setSuccess(data?.success)
 
     })
