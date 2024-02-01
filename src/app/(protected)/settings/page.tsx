@@ -86,7 +86,7 @@ function SettingsPage() {
         <Form {...form}>
           <form className='space-y-6' onSubmit={form.handleSubmit(onSubmit)}>
 
-           <div className=' space-y-4'>
+            <div className=' space-y-4'>
               <FormField
                 control={form.control}
                 name="name"
@@ -201,11 +201,10 @@ function SettingsPage() {
                   </FormItem>
                 )}
               />
-          </div>
+            </div>
 
             <FormError message={error} />
             <FormSuccess message={success} />
-
             <Button disabled={isPending} type='submit'>
               Save
             </Button>
