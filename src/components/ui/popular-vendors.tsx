@@ -52,7 +52,7 @@ export const PopularVendors = () => {
             {categoryItems.map((item, i) => (
               <div
                 key={i}
-                className="shadow-lg rounded-md bg-white py-2 px-2 w-60 mx-auto text-center cursor-pointer hover:-translate-y-4 duration-300 transition-all"
+                className="shadow-lg rounded-md bg-white py-2 px-2 w-60 mx-auto text-center cursor-pointer "
               >
                 <div className="flex w-full mx-auto items-center justify-center">
                   {/* <Image src={item.image} alt="logo" className='bg-[#C1F1C6] p-5 rounded-full w-32 h-32' /> */}
@@ -74,7 +74,7 @@ export const PopularVendors = () => {
             {categoryItems.map((item, i) => (
               <div
                 key={i}
-                className="shadow-lg rounded-md bg-white py-2 px-2 w-60 mx-auto text-center cursor-pointer hover:-translate-y-4 duration-300 transition-all"
+                className="shadow-lg rounded-md bg-white py-2 px-2 w-60 mx-auto text-center cursor-pointer "
               >
                 <div className="flex w-full mx-auto items-center justify-center">
                   <Image
