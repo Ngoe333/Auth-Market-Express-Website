@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {RightIcon} from "@/components/icons/right-icon";
 import {VideoIcon} from "@/components/icons/video-icon";
+import { DialogVideo } from "@/components/ui/dialog-video";
 
 export const Hero = () => {
     return (
@@ -27,6 +28,7 @@ export const Hero = () => {
 
                             <button className=" flex gap-4 text-black items-center bg-green-100 px-6 py-2 font-semibold rounded-full shadow-inner -mb-6">
                                 Video <VideoIcon />
+                                <DialogVideo />
                             </button>
                         </div>
                     </div>
