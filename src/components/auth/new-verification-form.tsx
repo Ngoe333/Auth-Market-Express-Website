@@ -7,7 +7,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { newVerificationToken } from '../../../action/new-verification'
 import { useRouter } from 'next/navigation'
-// import { useState } from 'react';
 import { FormError } from '../../components/form-error'
 import { FormSuccess } from '../../components/form-success'
 import toast from 'react-hot-toast';
