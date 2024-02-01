@@ -12,7 +12,6 @@ import { FormSuccess } from '@/components/form-success';
 import { cn } from "@/lib/utils";
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
-import { useTransition } from 'react';
 import Link from 'next/link';
 import {
   Form,
@@ -25,12 +24,14 @@ import {
 
 } from '@/components/ui/form'
 import { LoginSchema } from '../../../schemas';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { login } from '../../../action/login';
 
 export function LoginForm() {
-
-  const [ ispadding, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition()
+  const [showTwoFactor, setShowTwoFactor] = useState(false);
+  const [error, setError] = useState<string | undefined>('');
+  const [success, setSuccess] = useState<string | undefined>('');
 
   // Thisn is for a USER that signup with PROVIDER and went to LOGIGN with the seem informations
   const searchParams = useSearchParams();
@@ -38,9 +39,6 @@ export function LoginForm() {
   const urlError = searchParams.get('error') === 'OAuthAccountNotLinked'
     ? 'Email already use with a diffrent provider' : '';
 
-  const [showTwoFactor, setShowTwoFactor] = useState(false);
-  const [error, setError] = useState<string | undefined>('');
-  const [success, setSuccess] = useState<string | undefined>('');
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -49,39 +47,41 @@ export function LoginForm() {
     }
   })
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    setError('');
-    setSuccess('');
 
-    startTransition(() => {
-
-    })
-
-    login(values).then((data) => {
-
-      // This is For reset the FORM if the is and ERROR.
-      if (data?.error) {
-        form.reset();
-        setError(data?.error);
-      }
-
-      // This is For reset the FORM if the is a SUCCESS.
-      if (data?.success) {
-        form.reset();
-        setSuccess(data?.success)
-      }
+  startTransition(() => {
+    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+      setError('');
+      setSuccess('');
 
 
-      // Were not gonna reset the form because USER need dose credentials if the have the 2FA code.
-      if (data?.twoFactor) {
-        setShowTwoFactor(true)
-      }
+      login(values).then((data) => {
 
-    })
-    .catch(() => setError('Something went wrong!'));
+        // This is For reset the FORM if the is and ERROR.
+        if (data?.error) {
+          form.reset();
+          setError(data?.error);
+        }
+
+        // This is For reset the FORM if the is a SUCCESS.
+        if (data?.success) {
+          form.reset();
+          setSuccess(data?.success)
+        }
 
 
-  }
+        // Were not gonna reset the form because USER need dose credentials if the have the 2FA code.
+        if (data?.twoFactor) {
+          setShowTwoFactor(true)
+        }
+
+      })
+        .catch(() => setError('Something went wrong!'));
+
+    }
+
+  })
+
+
 
   return (
 
@@ -91,7 +91,7 @@ export function LoginForm() {
         backButtonLabel="Don't have an account ?"
         backButtonHref="/register"
         showSocial
-        
+
       >
         <Form {...form}>
 
@@ -112,6 +112,7 @@ export function LoginForm() {
                         <Input
                           {...field}
                           placeholder='123456'
+                          disabled={isPending}
                           className={cn('bg-white')}
                         />
                       </FormControl>
@@ -135,6 +136,7 @@ export function LoginForm() {
                           <Input
                             {...field}
                             placeholder='marketexpress@gmail.com'
+                            disabled={isPending}
                             type='email'
                             className={cn(' bg-white')}
                           />
@@ -156,6 +158,7 @@ export function LoginForm() {
                           <Input
                             {...field}
                             placeholder='*****'
+                            disabled={isPending}
                             type='password'
                             className={cn(' bg-white')}
                           />

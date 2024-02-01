@@ -23,18 +23,21 @@ import {
 
 } from '@/components/ui/form'
 import { RegisterSchema } from '../../../schemas';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { register } from '../../../action/register'
 
 export function RegisterForm() {
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
+  const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
       name: "",
       email: "",
       password: "",
+      adresse: "",
+      phoneNumber: "",
     }
   })
 
@@ -42,19 +45,24 @@ export function RegisterForm() {
     setError('');
     setSuccess('');
 
-    register(values).then((data) => {
-      if (data?.error) {
-        form.reset();
-        setError(data?.error);
-      }
-
-      // This is For reset the FORM if the is a SUCCESS.
-      if (data?.success) {
-        form.reset();
-        setSuccess(data?.success)
-      }
-    })
+    startTransition(() => {
+      register(values).then((data) => {
+        if (data?.error) {
+          form.reset();
+          setError(data?.error);
+        }
+  
+        // This is For reset the FORM if the is a SUCCESS.
+        if (data?.success) {
+          form.reset();
+          setSuccess(data?.success)
+        }
+      })
       .catch(() => setError('Something went wrong!'));
+
+    })
+
+   
 
   }
 
@@ -86,6 +94,7 @@ export function RegisterForm() {
                       <Input
                         {...field}
                         placeholder='Lovett Essouma'
+                        disabled={isPending}
                         type='text'
                         className={cn(' bg-white')}
                       />
@@ -108,6 +117,7 @@ export function RegisterForm() {
                       <Input
                         {...field}
                         placeholder='marketexpress@gmail.com'
+                        disabled={isPending}
                         type='email'
                         className={cn(' bg-white')}
                       />
@@ -129,6 +139,7 @@ export function RegisterForm() {
                       <Input
                         {...field}
                         placeholder='*****'
+                        disabled={isPending}
                         type='password'
                         className={cn(' bg-white')}
                       />
@@ -150,6 +161,7 @@ export function RegisterForm() {
                       <Input
                         {...field}
                         placeholder='Bonamoussadi'
+                        disabled={isPending}
                         type='text'
                         className={cn(' bg-white')}
                       />
@@ -171,6 +183,7 @@ export function RegisterForm() {
                       <Input
                         {...field}
                         placeholder='237-657-899-435'
+                        disabled={isPending}
                         type='text'
                         className={cn(' bg-white')}
                       />
