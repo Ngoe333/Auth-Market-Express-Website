@@ -26,7 +26,7 @@ export const PopularVendors = () => {
 
           {/* ---- Categories Cart -----  */}
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-2 justify-around items-center mt-12">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 justify-around items-center mt-12 space-y-2">
             {categoryItems.map((item, i) => (
               <div
                 key={i}
