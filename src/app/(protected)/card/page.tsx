@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function CardPage() {
+ function CardPage() {
     return (
 
         <div className=' mt-32'>
@@ -10,4 +10,6 @@ export function CardPage() {
 
     )
 }
+
+export default CardPage;
 
