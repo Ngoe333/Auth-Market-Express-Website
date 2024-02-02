@@ -62,7 +62,7 @@ function SettingsPage() {
                     if (data.success) {
                         update();
                         setSuccess(data.success)
-                        toast.succes.(data.success)                     
+                        toast.success(data.success)                     
                     }
 
                 }).catch(() => setError('Something went wrong!'));
