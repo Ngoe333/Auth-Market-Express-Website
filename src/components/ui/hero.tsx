@@ -1,10 +1,14 @@
 import Image from "next/image";
-import {RightIcon} from "@/components/icons/right-icon";
-import {VideoIcon} from "@/components/icons/video-icon";
+import { RightIcon } from "@/components/icons/right-icon";
+import { VideoIcon } from "@/components/icons/video-icon";
 import { DialogVideo } from "@/components/ui/dialog-video";
 import Link from "next/link";
+import { DialogMenus } from "./dialog-menu"; 
+import { useSession } from "next-auth/react";
 
 export const Hero = () => {
+    const session = useSession();
+    const status = session.status;
     return (
         <>
             <main>
@@ -23,13 +27,19 @@ export const Hero = () => {
                         </p>
 
                         <div className="gap-10 flex items-center justify-center  lg:justify-start xl:justify-start">
-                            <Link href="/menus" className=" flex gap-2 items-center text-white btc px-6 py-2 bg-green-500 rounded-full mt-6 font-semibold border shadow-md">
-                                Explore <RightIcon />{" "}
-                            </Link>
 
-                           <div>
-                            <DialogVideo />
-                           </div>
+                            {status === 'unauthenticated' ? (
+                                <DialogMenus />)
+
+                                : <Link href="/menus" className=" flex gap-2 items-center text-white btc px-6 py-2 bg-green-500 rounded-full mt-6 font-semibold border shadow-md">
+                                    Explore <RightIcon />{" "}
+                                  </Link>
+                            }
+
+
+                            <div>
+                                <DialogVideo />
+                            </div>
                         </div>
                     </div>
 
