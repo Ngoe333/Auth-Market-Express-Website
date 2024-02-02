@@ -16,7 +16,8 @@ import { FormError } from '@/components/form-error';
 import { cn } from '@/lib/utils';
 import { useCurrentUser } from '../../../../hooks/use-current-user';
 import { Switch } from '@radix-ui/react-switch';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
+import { Toaster } from '@/components/ui/sonner';
 import {
     Form,
     FormItem,
@@ -57,6 +58,7 @@ function SettingsPage() {
                     if (data.error) {
                         setError(data.error)
                         toast.error(data.error)
+                       
                     }
 
                     if (data.success) {
@@ -203,7 +205,9 @@ function SettingsPage() {
                         </div>
 
                         <FormError message={error} />
+                        <Toaster richColors  />
                         <FormSuccess message={success} />
+                        <Toaster richColors  />
                         <Button disabled={isPending} type='submit'>
                             Save
                         </Button>

@@ -7,9 +7,9 @@ import { CardWrapper } from '@/components/ui/card-wrapper';
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
-import { FormError } from '@/components/form-error';
-import { FormSuccess } from '@/components/form-success';
-import { cn } from "@/lib/utils";
+import { FormError } from '../form-error';
+import { FormSuccess } from '../form-success';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Form,
