@@ -2,6 +2,7 @@ import Image from "next/image";
 import {RightIcon} from "@/components/icons/right-icon";
 import {VideoIcon} from "@/components/icons/video-icon";
 import { DialogVideo } from "@/components/ui/dialog-video";
+import Link from "next/link";
 
 export const Hero = () => {
     return (
@@ -22,9 +23,9 @@ export const Hero = () => {
                         </p>
 
                         <div className="gap-10 flex items-center justify-center  lg:justify-start xl:justify-start">
-                            <button className=" flex gap-2 items-center text-white btc px-6 py-2 bg-green-500 rounded-full mt-6 font-semibold border shadow-md">
+                            <Link href="/menus" className=" flex gap-2 items-center text-white btc px-6 py-2 bg-green-500 rounded-full mt-6 font-semibold border shadow-md">
                                 Explore <RightIcon />{" "}
-                            </button>
+                            </Link>
 
                            <div>
                             <DialogVideo />
