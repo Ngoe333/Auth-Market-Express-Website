@@ -205,9 +205,7 @@ function SettingsPage() {
                         </div>
 
                         <FormError message={error} />
-                        {/* <Toaster richColors  /> */}
                         <FormSuccess message={success} />
-                        {/* <Toaster richColors  /> */}
                         <Button disabled={isPending} type='submit'>
                             Save
                         </Button>

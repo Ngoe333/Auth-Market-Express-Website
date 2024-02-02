@@ -35,6 +35,7 @@ export default async function RootLayout({
             <Footer />
           </main>
           <Toaster position="bottom-right" />
+          <Toaster richColors  />
         </body>
       </html>
     </SessionProvider>
