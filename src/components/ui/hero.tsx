@@ -1,3 +1,5 @@
+'use client' ;
+
 import Image from "next/image";
 import { RightIcon } from "@/components/icons/right-icon";
 import { VideoIcon } from "@/components/icons/video-icon";
