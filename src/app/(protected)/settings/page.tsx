@@ -56,13 +56,13 @@ function SettingsPage() {
                 .then((data) => {
                     if (data.error) {
                         setError(data.error)
-                        toast.error('Something went wrong! !')
+                        toast.error(data.error)
                     }
 
                     if (data.success) {
                         update();
                         setSuccess(data.success)
-                        toast.success('Update successfully !')
+                        toast.succes.(data.success)                     
                     }
 
                 }).catch(() => setError('Something went wrong!'));

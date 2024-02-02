@@ -33,7 +33,7 @@ export default async function RootLayout({
             {children}
             <Footer />
             <Toaster
-              position="bottom-center"
+              position="bottom-right"
               reverseOrder={false}
             />
           </main>
