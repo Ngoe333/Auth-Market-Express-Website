@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 import { useCurrentUser } from '../../../../hooks/use-current-user';
 import { Switch } from '@radix-ui/react-switch';
 import { toast } from 'sonner';
-import { Toaster } from '@/components/ui/sonner';
+// import { Toaster } from '@/components/ui/sonner';
 import {
     Form,
     FormItem,
@@ -205,9 +205,9 @@ function SettingsPage() {
                         </div>
 
                         <FormError message={error} />
-                        <Toaster richColors  />
+                        {/* <Toaster richColors  /> */}
                         <FormSuccess message={success} />
-                        <Toaster richColors  />
+                        {/* <Toaster richColors  /> */}
                         <Button disabled={isPending} type='submit'>
                             Save
                         </Button>
