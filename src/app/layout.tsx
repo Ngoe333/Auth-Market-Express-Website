@@ -6,7 +6,7 @@ import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../../auth";
-import { Toaster } from "@/components/ui/sonner";
+// import { Toaster } from "@/components/ui/sonner";
 
 
 
@@ -33,7 +33,7 @@ export default async function RootLayout({
             <Header />
             {children}
             <Footer />
-            <Toaster position="bottom-right" />
+            {/* <Toaster position="bottom-right" /> */}
           </main>
         </body>
       </html>
