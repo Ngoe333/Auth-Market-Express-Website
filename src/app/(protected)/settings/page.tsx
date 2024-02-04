@@ -121,8 +121,8 @@ function SettingsPage() {
 
                                                 {...field}
                                                 placeholder='Marketexpress@gmail.com'
-                                                disabled={isPending}
-                                                className={cn('bg-white')}
+                                                disabled={true}
+                                                className={cn('bg-gray-300 text-gray-500 cursor-not-allowed')}
                                                 type='email'
                                             />
                                         </FormControl>

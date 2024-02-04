@@ -1,19 +1,60 @@
 
-import React from 'react'
-import { auth } from '../../../../auth';
+import React from 'react';
 
 const MenuPage = async () => {
-  const session = await auth()
-
   // const handleChange = () => {
 
   // }
 
- 
-
   return (
     <div className='text-center mt-32'>
       <h2 className='text-4xl text-green-500 font-semibold'>Menu Items</h2>
+
+      <div className="flex flex-wrap justify-center items-center gap-4 mt-4 mb-4 px-4" >
+        {/* ----- All category button -----  */}
+        <button className=' font-semibold'
+
+        >
+          All
+        </button >
+
+        <button className=' font-semibold'
+
+        >
+          Salad
+        </button>
+
+        <button className=' font-semibold'
+
+        >
+          🐟Poissons
+        </button>
+
+        <button className=' font-semibold'
+
+        >
+          🥬Légumes
+        </button>
+
+        <button className=' font-semibold'
+
+        >
+          Desserts
+        </button>
+        <button className=' font-semibold'
+
+        >
+          Drinks
+        </button>
+      </div >
+
+      <div className="flex justify-center items-center mt-3 ">
+        <input
+          type="text"
+          placeholder="Search..."
+          // onChange={handleChange}
+          className="outline-none pl-4 rounded-md py-1 bg-slate-100 shadow-inner" />
+      </div>
 
 
       <div className='mt-4'>
@@ -23,8 +64,9 @@ const MenuPage = async () => {
         commodi tenetur placeat corporis.
       </div>
 
-      <div className=' mt-10'>
-        {JSON.stringify(session?.user.name)}
+      <div className=' mt-10 text-center'>
+        <h3>Market Express Sanaga</h3>
+       
       </div>
 
 

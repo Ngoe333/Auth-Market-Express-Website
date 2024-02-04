@@ -57,9 +57,7 @@ export const Header = () => {
           <div className="absolute right-48 cursor-pointer md:right-28 xl:right-48 ">
             <CardIcon />
           </div>
-       
-
-
+      
 
         {
           status === "unauthenticated" && (
