@@ -15,6 +15,10 @@ import { useSession } from "next-auth/react";
 
 export const Header = () => {
   const user = useCurrentUser();
+  let currentUser = user?.name || user?.email
+  if(currentUser?.includes(' ')){
+    currentUser = currentUser.split(' ')[0];
+  }
 
   const session = useSession();
   const status = session.status;
@@ -50,7 +54,7 @@ export const Header = () => {
         
 
       
-          <div className="absolute right-48 cursor-pointer md:right-24 xl:right-48 ">
+          <div className="absolute right-48 cursor-pointer md:right-28 xl:right-48 ">
             <CardIcon />
           </div>
        
@@ -72,7 +76,8 @@ export const Header = () => {
 
         <nav className="flex items-center gap-4">
           {status === "authenticated" && (
-            <UserInfo />
+            <Link href='/settings' className=" whitespace-nowrap font-bold absolute right-20 md:
+            ">Hi, {currentUser}</Link>
           )}
 
 
