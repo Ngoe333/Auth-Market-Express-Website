@@ -74,7 +74,7 @@ export const Header = () => {
 
         <nav className="flex items-center gap-4">
           {status === "authenticated" && (
-            <Link href='/settings' className=" whitespace-nowrap font-bold absolute text-[#91e2af] right-20 md:
+            <Link href='/settings' className=" whitespace-nowrap font-bold absolute text-slate-950 right-20 md:
             ">Hi, {currentUser}</Link>
           )}
 
