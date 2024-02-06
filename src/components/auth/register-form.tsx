@@ -184,7 +184,7 @@ export function RegisterForm() {
                         {...field}
                         placeholder='237-657-899-435'
                         disabled={isPending}
-                        type='text'
+                        type='tel'
                         className={cn(' bg-white')}
                       />
                     </FormControl>

@@ -166,7 +166,7 @@ function SettingsPage() {
                                                 placeholder='237-657-899-435'
                                                 disabled={isPending}
                                                 className={cn('bg-white')}
-                                                type='text'
+                                                type='tel'
                                             />
                                         </FormControl>
 

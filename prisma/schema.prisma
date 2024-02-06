@@ -21,11 +21,10 @@ model User {
   name          String?
   email         String?   @unique
   adresse       String?
-  phoneNumber   String?
+  phoneNumber   String?    @unique
   emailVerified DateTime?
   image         String?
   password      String?
-  dateOfBirth   Int?
   role          UserRole @default(USER)
   accounts      Account[]
   isTwoFactorEnable Boolean @default(false)
