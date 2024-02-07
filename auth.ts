@@ -64,8 +64,11 @@ export const {
             return true
         },
 
-        async session({ token, session }: {session: Session, user?: User, token?: any}){
+        async session({ token, session, user }: {session: Session, user?: User, token?: any}){
             // console.log({SessionToken: token})
+
+            // session.user.id = user?.id
+            // session.user.adresse = (user as User).adresse 
 
             if(token.sub && session.user){
                 session.user.id = token.sub
@@ -82,9 +85,9 @@ export const {
             if(session.user){
                 session.user.name = token.name;
                 session.user.email = token.email;
+                session.user.adresse =token.adresse;
+                session.user.phoneNumber =token.phoneNumber;
                 session.user.isOAuth = token.isOAuth as boolean;
-                
-            
             }
             return session;
         },
@@ -103,9 +106,10 @@ export const {
             token.isOAuth = !!existingAccount;
             token.name = existingUser.name;
             token.email = existingUser.email;
+            token.role = existingUser.role;
+            token.isTwoFactorEnable = existingUser.isTwoFactorEnable
             token.adresse = existingUser.adresse;
             token.phone = existingUser.phoneNumber;
-            token.role = existingUser.role;
             return token;
         }
 

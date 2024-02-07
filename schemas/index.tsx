@@ -57,12 +57,12 @@ export const RegisterSchema = z.object({
         message: 'Minimum 6 characters required',
     }),
 
-    adresse: z.string().min(0,{
+    adresse: z.string().min(3,{
         message: 'Minimum 3 characters required',
     }),
 
-    phoneNumber: z.string().min(8,{
-        message: 'Minimum 18 numbers required',
+    phoneNumber: z.coerce.number().gte(9,{
+        message: 'Minimum 9 numbers required',
     }),
 
 

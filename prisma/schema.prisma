@@ -21,7 +21,7 @@ model User {
   name          String?
   email         String?   @unique
   adresse       String?
-  phoneNumber   String?    @unique
+  phoneNumber   Int?    @unique
   emailVerified DateTime?
   image         String?
   password      String?

@@ -37,7 +37,7 @@ export function RegisterForm() {
       email: "",
       password: "",
       adresse: "",
-      phoneNumber: "",
+      phoneNumber: 237,
     }
   })
 
