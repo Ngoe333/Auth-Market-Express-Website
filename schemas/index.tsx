@@ -23,7 +23,7 @@ export const SettingsSchema = z.object({
     name: z.optional(z.string()),
     email: z.optional(z.string().email()),
     adresse: z.optional(z.string()),
-    phoneNumber: z.optional(z.string()),
+    phoneNumber: z.optional(z.coerce.number()),
     isTwoFactorEnabled: z.optional(z.boolean()),
 });
 
