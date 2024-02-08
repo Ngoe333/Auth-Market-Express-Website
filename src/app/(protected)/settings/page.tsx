@@ -44,8 +44,8 @@ function SettingsPage() {
         defaultValues: {
             name: user?.name || undefined,
             email: user?.email || undefined,
-            adresse: user?.adresse || undefined,
-            phoneNumber: user?.phoneNumber || undefined,
+            // adresse: user?.adresse || undefined,
+            // phoneNumber: user?.phoneNumber || undefined,
 
         }
     })

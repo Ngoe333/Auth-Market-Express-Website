@@ -37,7 +37,7 @@ export function RegisterForm() {
       email: "",
       password: "",
       adresse: "",
-      phoneNumber: 237,
+      phoneNumber: "",
     }
   })
 
@@ -51,18 +51,18 @@ export function RegisterForm() {
           form.reset();
           setError(data?.error);
         }
-  
+
         // This is For reset the FORM if the is a SUCCESS.
         if (data?.success) {
           form.reset();
           setSuccess(data?.success)
         }
       })
-      .catch(() => setError('Something went wrong!'));
+        .catch(() => setError('Something went wrong!'));
 
     })
 
-   
+
 
   }
 

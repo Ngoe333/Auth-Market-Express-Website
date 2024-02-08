@@ -23,7 +23,7 @@ export const SettingsSchema = z.object({
     name: z.optional(z.string()),
     email: z.optional(z.string().email()),
     adresse: z.optional(z.string()),
-    phoneNumber: z.optional(z.coerce.number()),
+    phoneNumber: z.optional(z.string()),
     isTwoFactorEnabled: z.optional(z.boolean()),
 });
 
@@ -61,7 +61,7 @@ export const RegisterSchema = z.object({
         message: 'Minimum 3 characters required',
     }),
 
-    phoneNumber: z.coerce.number().gte(9,{
+    phoneNumber: z.string().min(9,{
         message: 'Minimum 9 numbers required',
     }),
 
