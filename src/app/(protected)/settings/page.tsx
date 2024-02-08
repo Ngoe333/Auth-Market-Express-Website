@@ -44,8 +44,8 @@ function SettingsPage() {
         defaultValues: {
             name: user?.name || undefined,
             email: user?.email || undefined,
-            // adresse: user?.adresse || undefined,
-            // phoneNumber: user?.phoneNumber || undefined,
+            adresse: user?.adresse || undefined,
+            phone: user?.phone || undefined,
 
         }
     })
@@ -155,7 +155,7 @@ function SettingsPage() {
 
                             <FormField
                                 control={form.control}
-                                name="phoneNumber"
+                                name="phone"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Phone Number</FormLabel>
@@ -166,7 +166,7 @@ function SettingsPage() {
                                                 placeholder='237-657-899-435'
                                                 disabled={isPending}
                                                 className={cn('bg-white')}
-                                                type='tel'
+                                               
                                             />
                                         </FormControl>
 

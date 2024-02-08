@@ -1,4 +1,4 @@
-import { truncateSync } from 'fs';
+
 import * as z from 'zod';
 
 export const NewPasswordSchema = z.object({
@@ -23,7 +23,7 @@ export const SettingsSchema = z.object({
     name: z.optional(z.string()),
     email: z.optional(z.string().email()),
     adresse: z.optional(z.string()),
-    phoneNumber: z.optional(z.string()),
+    phone: z.optional(z.string()),
     isTwoFactorEnabled: z.optional(z.boolean()),
 });
 
@@ -55,14 +55,6 @@ export const RegisterSchema = z.object({
 
     password: z.string().min(6,{
         message: 'Minimum 6 characters required',
-    }),
-
-    adresse: z.string().min(3,{
-        message: 'Minimum 3 characters required',
-    }),
-
-    phoneNumber: z.string().min(9,{
-        message: 'Minimum 9 numbers required',
     }),
 
 

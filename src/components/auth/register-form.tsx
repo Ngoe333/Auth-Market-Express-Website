@@ -36,8 +36,8 @@ export function RegisterForm() {
       name: "",
       email: "",
       password: "",
-      adresse: "",
-      phoneNumber: "",
+      // adresse: "",
+      // phone: "",
     }
   })
 
@@ -151,49 +151,7 @@ export function RegisterForm() {
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="adresse"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Adresse</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder='Bonamoussadi'
-                        disabled={isPending}
-                        type='text'
-                        className={cn(' bg-white')}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="phoneNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder='237-657-899-435'
-                        disabled={isPending}
-                        type='tel'
-                        className={cn(' bg-white')}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-
-                )}
-              />
+            
 
             </div>
             <FormError message={error} />
