@@ -88,9 +88,9 @@ function SettingsPage() {
 
             <div className=' flex flex-wrap gap-2 tags mx-auto justify-center mt-24'>
                 <Link href={'/settings'} className={path === '/settings' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Settings</Link>
-                {UserRole.ADMIN && (
+                {user?.role === UserRole.ADMIN && (
                     <>
-                        <Link href={'/categories'} className={path === '/categories' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : ' '}>Categories</Link>
+                        <Link href={'/categories'} className={path === '/categories' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Categories</Link>
                         <Link href={'/menu-items'} className={path === '/menu-items' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Meu Items</Link>
                         <Link href={'/users'} className={path === '/users' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Users</Link>
                     </>
