@@ -18,6 +18,7 @@ import { useCurrentUser } from '../../../../hooks/use-current-user';
 import { Switch } from '@radix-ui/react-switch';
 import { toast } from 'sonner';
 import { UserRole } from '@prisma/client';
+import { usePathname } from 'next/navigation';
 // import { Toaster } from '@/components/ui/sonner';
 import {
     Form,
@@ -40,6 +41,7 @@ function SettingsPage() {
     const [isPending, startTransition] = useTransition();
     const { update } = useSession();
     const user = useCurrentUser();
+    const path = usePathname();
 
     const form = useForm<z.infer<typeof SettingsSchema>>({
         resolver: zodResolver(SettingsSchema),
@@ -84,24 +86,18 @@ function SettingsPage() {
 
         <>
 
-            <div className=' flex flex-wrap gap-2 tags mx-auto justify-center mt-28'>
-                <Link href={'/settings'} className={'active bg-green-500 text-white '}>Settings</Link>
+            <div className=' flex flex-wrap gap-2 tags mx-auto justify-center mt-24'>
+                <Link href={'/settings'} className={path === '/settings' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Settings</Link>
                 {UserRole.ADMIN && (
                     <>
-                        <Link href={'/categories'} className='bg-gray-300 text-gray-700 rounded-full py-2 px-4 '>Categories</Link>
-                        <Link href={'/menu-items'} className='bg-gray-300 text-gray-700 rounded-full py-2 px-4 '>Meu Items</Link>
-                        <Link href={'/users'} className='bg-gray-300 text-gray-700 rounded-full py-2 px-4 '>Users</Link>
+                        <Link href={'/categories'} className={path === '/categories' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Categories</Link>
+                        <Link href={'/menu-items'} className={path === '/menu-items' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Meu Items</Link>
+                        <Link href={'/users'} className={path === '/users' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Users</Link>
                     </>
                 )}
             </div>
 
-
-            <Card className=' max-w[400px]  mt-32'>
-
-                <CardHeader>
-
-
-                </CardHeader>
+            <Card className=' max-w[400px] mt-8 py-4'>
 
                 <CardContent>
                     <Form {...form}>
