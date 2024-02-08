@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import { useCurrentUser } from '../../../../hooks/use-current-user';
 import { Switch } from '@radix-ui/react-switch';
 import { toast } from 'sonner';
+import { UserRole } from '@prisma/client';
 // import { Toaster } from '@/components/ui/sonner';
 import {
     Form,
@@ -29,6 +30,7 @@ import {
 } from '@/components/ui/form';
 
 import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 
 
@@ -58,13 +60,13 @@ function SettingsPage() {
                     if (data.error) {
                         setError(data.error)
                         toast.error(data.error)
-                       
+
                     }
 
                     if (data.success) {
                         update();
                         setSuccess(data.success)
-                        toast.success(data.success)                     
+                        toast.success(data.success)
                     }
 
                 }).catch(() => setError('Something went wrong!'));
@@ -79,150 +81,168 @@ function SettingsPage() {
     }
 
     return (
-        <Card className=' max-w[400px]  mt-32'>
-            <CardHeader>
-                <h2 className='text-2xl text-green-500 font-semibold text-center'>Settings</h2>
-            </CardHeader>
 
-            <CardContent>
-                <Form {...form}>
-                    <form className='space-y-6' onSubmit={form.handleSubmit(onSubmit)}>
+        <>
 
-                        <div className=' space-y-4'>
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Name</FormLabel>
-                                        <FormControl>
-                                            <Input
-
-                                                {...field}
-                                                placeholder='Market Express'
-                                                disabled={isPending}
-                                                className={cn('bg-white')}
-                                            />
-                                        </FormControl>
-
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name="email"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Email</FormLabel>
-                                        <FormControl>
-                                            <Input
-
-                                                {...field}
-                                                placeholder='Marketexpress@gmail.com'
-                                                disabled={true}
-                                                className={cn('bg-gray-300 text-gray-500 cursor-not-allowed')}
-                                                type='email'
-                                            />
-                                        </FormControl>
-
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name="adresse"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Adresse</FormLabel>
-                                        <FormControl>
-                                            <Input
-
-                                                {...field}
-                                                placeholder='Akwa'
-                                                disabled={isPending}
-                                                className={cn('bg-white')}
-                                            />
-                                        </FormControl>
-
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name="phone"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Phone Number</FormLabel>
-                                        <FormControl>
-                                            <Input
-
-                                                {...field}
-                                                placeholder='237-657-899-435'
-                                                disabled={isPending}
-                                                className={cn('bg-white')}
-                                               
-                                            />
-                                        </FormControl>
-
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+            <div className=' flex flex-wrap gap-2 tags mx-auto justify-center mt-28'>
+                <Link href={'/settings'} className={'active bg-green-500 text-white '}>Settings</Link>
+                {UserRole.ADMIN && (
+                    <>
+                        <Link href={'/categories'} className='bg-gray-300 text-gray-700 rounded-full py-2 px-4 '>Categories</Link>
+                        <Link href={'/menu-items'} className='bg-gray-300 text-gray-700 rounded-full py-2 px-4 '>Meu Items</Link>
+                        <Link href={'/users'} className='bg-gray-300 text-gray-700 rounded-full py-2 px-4 '>Users</Link>
+                    </>
+                )}
+            </div>
 
 
-                            <FormField
-                                control={form.control}
-                                name="isTwoFactorEnabled"
-                                render={({ field }) => (
-                                    <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm '>
-                                        <div className='space-y-0.5'>
-                                            <FormLabel>
-                                                Two Factor Authentication
-                                            </FormLabel>
+            <Card className=' max-w[400px]  mt-32'>
 
-                                            <FormDescription className='bg-white'>
-                                                Enable two factor uathentication for your account
-                                            </FormDescription>
-
-                                        </div>
-
-                                        <FormControl>
-                                            <Switch
-                                                disabled={isPending}
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <FormError message={error} />
-                        <FormSuccess message={success} />
-                        <Button disabled={isPending} type='submit'>
-                            Save
-                        </Button>
-
-                    </form>
-
-                </Form>
-
-            </CardContent>
-
-            <button onClick={onClick} type='submit' className=' bg-slate-300 mb-2 px-4 py-2 shadow-md mx-auto mt-4 text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-[120px]'>
-                <ExitIcon className=' h-4 w-4 mr-2' />
-                Sign-out
-            </button>
+                <CardHeader>
 
 
-        </Card>
+                </CardHeader>
+
+                <CardContent>
+                    <Form {...form}>
+                        <form className='space-y-6' onSubmit={form.handleSubmit(onSubmit)}>
+
+                            <div className=' space-y-4'>
+                                <FormField
+                                    control={form.control}
+                                    name="name"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Name</FormLabel>
+                                            <FormControl>
+                                                <Input
+
+                                                    {...field}
+                                                    placeholder='Market Express'
+                                                    disabled={isPending}
+                                                    className={cn('bg-white')}
+                                                />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Email</FormLabel>
+                                            <FormControl>
+                                                <Input
+
+                                                    {...field}
+                                                    placeholder='Marketexpress@gmail.com'
+                                                    disabled={true}
+                                                    className={cn('bg-gray-300 text-gray-500 cursor-not-allowed')}
+                                                    type='email'
+                                                />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="adresse"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Adresse</FormLabel>
+                                            <FormControl>
+                                                <Input
+
+                                                    {...field}
+                                                    placeholder='Akwa'
+                                                    disabled={isPending}
+                                                    className={cn('bg-white')}
+                                                />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="phone"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Phone Number</FormLabel>
+                                            <FormControl>
+                                                <Input
+
+                                                    {...field}
+                                                    placeholder='237-657-899-435'
+                                                    disabled={isPending}
+                                                    className={cn('bg-white')}
+
+                                                />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+
+                                <FormField
+                                    control={form.control}
+                                    name="isTwoFactorEnabled"
+                                    render={({ field }) => (
+                                        <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm '>
+                                            <div className='space-y-0.5'>
+                                                <FormLabel>
+                                                    Two Factor Authentication
+                                                </FormLabel>
+
+                                                <FormDescription className='bg-white'>
+                                                    Enable two factor uathentication for your account
+                                                </FormDescription>
+
+                                            </div>
+
+                                            <FormControl>
+                                                <Switch
+                                                    disabled={isPending}
+                                                    checked={field.value}
+                                                    onCheckedChange={field.onChange}
+                                                />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <FormError message={error} />
+                            <FormSuccess message={success} />
+                            <Button disabled={isPending} type='submit'>
+                                Save
+                            </Button>
+
+                        </form>
+
+                    </Form>
+
+                </CardContent>
+
+                <button onClick={onClick} type='submit' className=' bg-slate-300 mb-2 px-4 py-2 shadow-md mx-auto mt-4 text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-[120px]'>
+                    <ExitIcon className=' h-4 w-4 mr-2' />
+                    Sign-out
+                </button>
+
+
+            </Card>
+        </>
 
     )
 
