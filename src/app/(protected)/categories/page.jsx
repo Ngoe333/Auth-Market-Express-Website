@@ -9,9 +9,7 @@ function CategoriesPage() {
 
   function handleNewCategorieSubmit(event) {
     event.preventDefault();
-        
   }
-
 
   return (
     <section className=" max-w[500px] mt-24 flex mx-auto justify-center">
@@ -60,32 +58,30 @@ function CategoriesPage() {
             </Link>
           </>
         )}
-      </div>
+        
+        <div className=" mt-4">
+          <form onsubmit={handleNewCategorieSubmit}>
+            <div className=" flex flex-col gap-2 space-y-2 ">
+              <div className="grow">
+                <label>New categories</label>
+                <input
+                  type="text"
+                  value={newCategoriesName}
+                  onChange={(event) => setNewCategoriesName(event.target.value)}
+                />
+              </div>
 
-      
-
-      <div className=" mt-4">
-        <form onsubmit={handleNewCategorieSubmit}>
-          <div className=" flex flex-col gap-2 space-y-2 ">
-            <div className="grow">
-              <label>New categories</label>
-              <input
-                type="text"
-                value={newCategoriesName}
-                onChange={(event) => setNewCategoriesName(event.target.value)}
-              />
+              <div>
+                <button
+                  className=" border border-green-300 bg-slate-800 "
+                  type="submit"
+                >
+                  Create
+                </button>
+              </div>
             </div>
-
-            <div>
-              <button
-                className=" border border-green-300 bg-slate-800 "
-                type="submit"
-              >
-                Create
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </section>
   );
