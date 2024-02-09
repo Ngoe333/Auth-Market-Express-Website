@@ -4,6 +4,7 @@ import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import {Button} from '@/components/ui/button';
 
 function CategoriesPage() {
   const [newCategoriesName, setNewCategoriesName] = useState();
@@ -67,7 +68,7 @@ function CategoriesPage() {
               <div className="flex flex-col items-center justify-center space-y-3">
                 <label className="text-center text-2xl font-semibold">New category</label>
                 <input
-                  type="text" className=" rounded-sm outline-none py-2 bg-gray-300 shadow-inner pl-4"
+                  type="text" className=" rounded-md outline-none py-2 bg-slate-100 shadow-inner pl-4"
                   placeholder="Catogery"
                   value={newCategoriesName}
                   onChange={(event) => setNewCategoriesName(event.target.value)}
@@ -75,12 +76,11 @@ function CategoriesPage() {
               </div>
 
               <div>
-                <button
-                  className="text-white bg-slate-700 py-2 px-5 rounded-full "
+                <Button
                   type="submit"
                 >
                   Create
-                </button>
+                </Button>
               </div>
             </div>
           </form>
