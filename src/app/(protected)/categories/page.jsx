@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
@@ -58,34 +58,33 @@ function CategoriesPage() {
             >
               Users
             </Link>
-
-            <div className=" mt-4">
-              <form onsubmit={handleNewCategorieSubmit}>
-                <div className=" flex flex-col gap-2 space-y-2 ">
-                  <div className="grow">
-                    <label>New categories</label>
-                    <input
-                      type="text"
-                      value={newCategoriesName}
-                      onChange={(event) =>
-                        setNewCategoriesName(event.target.value)
-                      }
-                    />
-                  </div>
-
-                  <div>
-                    <button
-                      className=" border border-green-300 bg-slate-800 "
-                      type="submit"
-                    >
-                      Create
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
           </>
         )}
+
+        <div className=" mt-4">
+          <form onsubmit={handleNewCategorieSubmit}>
+            <div className=" flex flex-col gap-2 space-y-2 items-center justify-center ">
+              <div className="grow">
+                <label>New categories</label>
+                <input
+                  type="text" className=" rounded-sm outline-none py-4 bg-green-300 shadow-inner pl-4"
+                  placeholder="Catogery"
+                  value={newCategoriesName}
+                  onChange={(event) => setNewCategoriesName(event.target.value)}
+                />
+              </div>
+
+              <div>
+                <button
+                  className="text-white bg-slate-800 py-2 px-4 "
+                  type="submit"
+                >
+                  Create
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
