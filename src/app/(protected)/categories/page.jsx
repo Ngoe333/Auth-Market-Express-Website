@@ -1,3 +1,5 @@
+'use client';
+
 import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -58,7 +60,7 @@ function CategoriesPage() {
             </Link>
           </>
         )}
-        
+
         <div className=" mt-4">
           <form onsubmit={handleNewCategorieSubmit}>
             <div className=" flex flex-col gap-2 space-y-2 ">
