@@ -53,7 +53,7 @@ const MenuPage = async () => {
           type="text"
           placeholder="Search..."
           // onChange={handleChange}
-          className="outline-none pl-4 rounded-md py-1 bg-slate-100 shadow-inner" />
+          className="outline-none pl-4 rounded-md py-2 bg-slate-100 shadow-inner" />
       </div>
 
 
