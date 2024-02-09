@@ -106,10 +106,10 @@ export const Header = () => {
                   Home
                 </Link>
                 <Link onClick={() => setShowmenu(false)} href={"/menus"} className={path === '/menus' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>Menus</Link>
-                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer  text-lg font-semibold' href={"/order"}>Order</Link>
-                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/about"}>About</Link>
-                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/settings"}>Settings</Link>
-                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/contact"}>Contact</Link>
+                <Link onClick={() => setShowmenu(false)} href={"/order"} className={path === '/order' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>Order</Link>
+                <Link onClick={() => setShowmenu(false)} href={"/about"} className={path === '/about' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>About</Link>
+                <Link onClick={() => setShowmenu(false)} href={"/settings"} className={path === '/settings' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>Settings</Link>
+                <Link onClick={() => setShowmenu(false)} href={"/contact"} className={path === '/contact' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>Contact</Link>
               </ul>
 
               {status === "authenticated" ? "" :
