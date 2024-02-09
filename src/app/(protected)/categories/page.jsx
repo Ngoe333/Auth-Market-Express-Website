@@ -61,13 +61,13 @@ function CategoriesPage() {
           </>
         )}
 
-        <div className=" mt-4">
+        <div className=" mt-6">
           <form onsubmit={handleNewCategorieSubmit}>
-            <div className=" flex flex-col gap-2 space-y-2 items-center justify-center ">
+            <div className=" flex flex-col gap-2 space-y-2 items-center justify-center mx-auto  ">
               <div className="grow">
-                <label>New categories</label>
+                <label className="text-center text-2xl font-semibold">New categories</label>
                 <input
-                  type="text" className=" rounded-sm outline-none py-4 bg-green-300 shadow-inner pl-4"
+                  type="text" className=" rounded-sm outline-none py-2 bg-green-400 shadow-inner pl-4"
                   placeholder="Catogery"
                   value={newCategoriesName}
                   onChange={(event) => setNewCategoriesName(event.target.value)}
@@ -76,7 +76,7 @@ function CategoriesPage() {
 
               <div>
                 <button
-                  className="text-white bg-slate-800 py-2 px-4 "
+                  className="text-white bg-blue-600 py-2 px-4 "
                   type="submit"
                 >
                   Create
