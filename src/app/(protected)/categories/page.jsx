@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
@@ -58,32 +58,34 @@ function CategoriesPage() {
             >
               Users
             </Link>
+
+            <div className=" mt-4">
+              <form onsubmit={handleNewCategorieSubmit}>
+                <div className=" flex flex-col gap-2 space-y-2 ">
+                  <div className="grow">
+                    <label>New categories</label>
+                    <input
+                      type="text"
+                      value={newCategoriesName}
+                      onChange={(event) =>
+                        setNewCategoriesName(event.target.value)
+                      }
+                    />
+                  </div>
+
+                  <div>
+                    <button
+                      className=" border border-green-300 bg-slate-800 "
+                      type="submit"
+                    >
+                      Create
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </>
         )}
-
-        <div className=" mt-4">
-          <form onsubmit={handleNewCategorieSubmit}>
-            <div className=" flex flex-col gap-2 space-y-2 ">
-              <div className="grow">
-                <label>New categories</label>
-                <input
-                  type="text"
-                  value={newCategoriesName}
-                  onChange={(event) => setNewCategoriesName(event.target.value)}
-                />
-              </div>
-
-              <div>
-                <button
-                  className=" border border-green-300 bg-slate-800 "
-                  type="submit"
-                >
-                  Create
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
       </div>
     </section>
   );
