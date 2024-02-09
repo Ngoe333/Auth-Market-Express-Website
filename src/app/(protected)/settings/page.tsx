@@ -86,7 +86,7 @@ function SettingsPage() {
 
         <>
 
-            <div className=' flex flex-wrap gap-2 tags mx-auto justify-center mt-24'>
+            <div className=' flex space-y-2 gap-2 tags mx-auto justify-center mt-24'>
                 <Link href={'/settings'} className={path === '/settings' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Settings</Link>
                 {user?.role === UserRole.ADMIN && (
                     <>

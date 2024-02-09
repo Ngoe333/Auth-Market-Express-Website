@@ -10,11 +10,13 @@ import { CloseIcon } from "@/components/icons/close-icon";
 import { useCurrentUser } from "../../../hooks/use-current-user";
 import { UserInfo } from "@/app/(protected)/_components/user-info";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 // import {auth} from '../../../auth';
 // import toast from 'react-hot-toast';
 
 export const Header = () => {
   const user = useCurrentUser();
+  const path = usePathname();
   let currentUser = user?.name || user?.email
   if(currentUser?.includes(' ')){
     currentUser = currentUser.split(' ')[0];
@@ -100,10 +102,10 @@ export const Header = () => {
             <div className="flex flex-col items-center justify-center gap-4">
 
               <ul className='flex-col py-4 flex '>
-                <Link onClick={() => setShowmenu(false)} className="text-green-500 py-4 cursor-pointer text-lg font-semibold" href={"/"}>
+                <Link onClick={() => setShowmenu(false)} href={"/"} className={path === '/' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>
                   Home
                 </Link>
-                <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/menus"}>Menus</Link>
+                <Link onClick={() => setShowmenu(false)} href={"/menus"} className={path === '/menus' ? 'py-4 cursor-pointer text-lg font-semibold text-green-500' : 'py-4 cursor-pointer text-lg font-semibold'}>Menus</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer  text-lg font-semibold' href={"/order"}>Order</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/about"}>About</Link>
                 <Link onClick={() => setShowmenu(false)} className='py-4 cursor-pointer text-lg font-semibold' href={"/settings"}>Settings</Link>
