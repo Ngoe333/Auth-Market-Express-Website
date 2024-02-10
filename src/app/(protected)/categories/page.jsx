@@ -124,7 +124,7 @@ function CategoriesPage() {
             <h3 className="mt-8 text-sm text-gray-500">Edit category:</h3>
             {categories.length > 0 && categories.map(c => (
               <button className="bg-gray-200n rounded-xl p-2 px-4 flex gap-1 mb-2 cursor-pointer">
-                <span key={c.toString()}>{c.name}</span>
+                <div key={c.toString()}>{c.name}</div>
               </button>
             ))}
 
