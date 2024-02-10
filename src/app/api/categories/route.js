@@ -14,3 +14,10 @@ export async function POST(req){
     return  Response.json(newCategory)
     
 }
+
+export async function GET(){
+    return Response.json(
+      await db.category.findMany()
+         
+    )
+}

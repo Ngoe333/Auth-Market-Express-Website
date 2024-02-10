@@ -3,13 +3,24 @@
 import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Button} from '@/components/ui/button';
 import { toast } from 'sonner';
 
 function CategoriesPage() {
   const [newCategoriesName, setNewCategoriesName] = useState();
+  const [categories, setCategories] = useState([]);
   const path = usePathname();
+
+  useEffect(() => {
+    fetch('/api/categories').then(res => {
+      res.json().then(categories => {
+        setCategories(categories);
+      });
+
+    });
+
+  }, []);
 
   async function handleNewCategorieSubmit(event) {
     event.preventDefault();
@@ -78,10 +89,10 @@ function CategoriesPage() {
         )}
 
         <div className=" mt-6">
-          <form onsubmit={handleNewCategorieSubmit}>
+          <form onSubmit={handleNewCategorieSubmit}>
             <div className=" flex flex-col gap-2 space-y-2 items-center justify-center ">
               <div className="flex flex-col items-center justify-center space-y-3">
-                <label className="text-center text-2xl font-semibold">New category</label>
+                <label className="text-center text-2xl font-semibold  mb-4">New category</label>
                 <input
                   type="text" className=" rounded-md outline-none py-2 bg-slate-100 shadow-inner pl-4"
                   placeholder="Catogery"
@@ -99,6 +110,15 @@ function CategoriesPage() {
               </div>
             </div>
           </form>
+
+          <div>
+            {categories.length > 0 && categories.map(c => (
+
+              <div className="flex flex-col space-y-4 font-semibold">{c.name}</div>
+
+            ))}
+
+          </div>
         </div>
       </div>
     </section>
