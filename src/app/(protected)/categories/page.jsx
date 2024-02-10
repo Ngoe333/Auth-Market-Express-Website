@@ -114,7 +114,7 @@ function CategoriesPage() {
           <div>
             {categories.length > 0 && categories.map(c => (
 
-              <div className="flex flex-col space-y-4 font-semibold">{c.name}</div>
+              <div className="flex flex-col space-y-4 font-semibold" key={c.toString()}>{c.name}</div>
 
             ))}
 
