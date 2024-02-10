@@ -13,6 +13,11 @@ function CategoriesPage() {
   const path = usePathname();
 
   useEffect(() => {
+    fetchCategory();  
+  }, []);
+
+
+  const fetchCategory = () => {
     fetch('/api/categories').then(res => {
       res.json().then(categories => {
         setCategories(categories);
@@ -20,7 +25,8 @@ function CategoriesPage() {
 
     });
 
-  }, []);
+
+  }
 
   async function handleNewCategorieSubmit(event) {
     event.preventDefault();
@@ -30,6 +36,9 @@ function CategoriesPage() {
         headers: {'Content-Type': "application/json"},
         body: JSON.stringify({name:newCategoriesName}),
     });
+
+    setCategories('');
+    fetchCategory();
 
     if(response.ok){
         toast.success('Category create succesfully!')
@@ -92,7 +101,7 @@ function CategoriesPage() {
           <form onSubmit={handleNewCategorieSubmit}>
             <div className=" flex flex-col gap-2 space-y-2 items-center justify-center ">
               <div className="flex flex-col items-center justify-center space-y-3">
-                <label className="text-center text-2xl font-semibold  mb-4">New category</label>
+                <label className="text-center text-2xl font-semibold  mb-4 text-gray-500">New category</label>
                 <input
                   type="text" className=" rounded-md outline-none py-2 bg-slate-100 shadow-inner pl-4"
                   placeholder="Catogery"
@@ -112,10 +121,11 @@ function CategoriesPage() {
           </form>
 
           <div>
+            <h3 className="mt-8 text-sm text-gray-500">Edit category:</h3>
             {categories.length > 0 && categories.map(c => (
-
-              <div className="flex flex-col space-y-4 font-semibold" key={c.toString()}>{c.name}</div>
-
+              <button className="bg-gray-200n rounded-xl p-2 px-4 flex gap-1 mb-2 cursor-pointer">
+                <span key={c.toString()}>{c.name}</span>
+              </button>
             ))}
 
           </div>
