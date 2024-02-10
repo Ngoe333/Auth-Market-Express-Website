@@ -123,7 +123,7 @@ function CategoriesPage() {
           <div>
             <h3 className="mt-8 text-sm text-gray-500">Edit category:</h3>
             {categories.length > 0 && categories.map(c => (
-                <div className="bg-gray-200n rounded-xl p-2 px-4 flex gap-1 mb-2 cursor-pointer" key={c.toString()}>{c.name}</div>
+                <div className="bg-gray-200 rounded-xl p-2 px-4 flex gap-1 mb-2 cursor-pointer" key={c.toString()}>{c.name}</div>
             ))}
 
           </div>
