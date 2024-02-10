@@ -112,6 +112,8 @@ function CategoriesPage() {
 
               <div>
                 <Button
+                  asChild
+                  variant={' bg-green-500 text-white'}
                   type="submit"
                 >
                   Create
@@ -123,7 +125,7 @@ function CategoriesPage() {
           <div>
             <h3 className="mt-8 text-sm text-gray-500">Edit category:</h3>
             {categories.length > 0 && categories.map(c => (
-                <button className="bg-slate-200 rounded-xl p-2 px-4 flex gap-1 mb-2 cursor-pointer" key={c.toString()}>{c.name}</button>
+                <button className="bg-slate-200 rounded-xl py-4 w-[250px] px-4 flex gap-1 mb-2 cursor-pointer" key={c.toString()}>{c.name}</button>
             ))}
 
           </div>
