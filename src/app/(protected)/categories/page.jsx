@@ -5,13 +5,28 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import {Button} from '@/components/ui/button';
+import { toast } from 'sonner';
 
 function CategoriesPage() {
   const [newCategoriesName, setNewCategoriesName] = useState();
   const path = usePathname();
 
-  function handleNewCategorieSubmit(event) {
+  async function handleNewCategorieSubmit(event) {
     event.preventDefault();
+
+    const response = await fetch('/api/categories', {
+        method: 'POST',
+        headers: {'Content-Type': "application/json"},
+        body: JSON.stringify({name:newCategoriesName}),
+    });
+
+    if(response.ok){
+        toast.success('Category create succesfully!')
+    }
+
+    else{
+        toast.error('Somthing went wrong!')
+    }
   }
 
   return (
@@ -47,7 +62,7 @@ function CategoriesPage() {
                   : "bg-gray-300 text-gray-700 rounded-full py-2 px-4 "
               }
             >
-              Meu Items
+              Menu Items
             </Link>
             <Link
               href={"/users"}

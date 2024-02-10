@@ -25,6 +25,8 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   role          UserRole @default(USER)
   accounts      Account[]
   isTwoFactorEnable Boolean @default(false)
@@ -84,6 +86,14 @@ model TowFactorConfirmation{
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   @@unique([userId])
+}
+
+model Category{
+  id String  @id @default(cuid()) @map("_id")
+  name String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt 
+  
 }
 
 
