@@ -1,5 +1,3 @@
-
-
 export const CloseIcon = ({ className = "w-8 h-8 text-black" }) => {
     return (
         <div>

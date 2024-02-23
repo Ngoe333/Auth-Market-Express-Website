@@ -19,6 +19,7 @@ import { Switch } from '@radix-ui/react-switch';
 import { toast } from 'sonner';
 import { UserRole } from '@prisma/client';
 import { usePathname } from 'next/navigation';
+
 // import { Toaster } from '@/components/ui/sonner';
 import {
     Form,
@@ -32,6 +33,8 @@ import {
 
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import Image from 'next/image';
+import { EditableImage } from '@/lib/editableImage';
 
 
 
@@ -42,6 +45,7 @@ function SettingsPage() {
     const { update } = useSession();
     const user = useCurrentUser();
     const path = usePathname();
+    const [image, setImage] = useState('');
 
     const form = useForm<z.infer<typeof SettingsSchema>>({
         resolver: zodResolver(SettingsSchema),
@@ -86,16 +90,31 @@ function SettingsPage() {
 
         <>
 
-            <div className=' flex flex-wrap space-y-2 gap-2 mx-auto justify-center mt-24'>
-                <Link href={'/settings'} className={path === '/settings' ? 'active bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Settings</Link>
+            <div className=' flex flex-wrap space-y-2 gap-2 mx-auto justify-center mt-24 items-center'>
+
+                <div className='flex flex-col items-center justify-center width[20px] height[20px] rounded-full space-y-2'>
+
+                    {user?.role === UserRole.ADMIN ? '' : <div><EditableImage link={image} setLink={setImage} /> </div>}
+                    
+                </div>
+
                 {user?.role === UserRole.ADMIN && (
                     <>
+                        <Link href={'/settings'} className={path === '/settings' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Settings</Link>
                         <Link href={'/categories'} className={path === '/categories' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Categories</Link>
-                        <Link href={'/menu-items'} className={path === '/menu-items' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Meu Items</Link>
+                        <Link href={'/menu-items'} className={path === '/menu-items' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Meun Items</Link>
                         <Link href={'/users'} className={path === '/users' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Users</Link>
+                        <Link href={'/orders'} className={path === '/orders' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>Orders</Link>
+                        <Link href={'/new'} className={path === '/new' ? ' bg-green-500 text-white rounded-full py-2 px-4 ' : 'bg-gray-300 text-gray-700 rounded-full py-2 px-4 '}>New menu</Link>
                     </>
                 )}
             </div>
+
+            {/* <div className='flex justify-center items-center h-full flex-col'>
+                <Image className=' rounded-full mt-8 border-solid border-2 border-green-300' src={user?.image || ''} width={110} height={110} alt={'Avarta'} />
+                <button className='mt-2 px-8 py-2 rounded-full bg-gray-200' type='button'>Edit</button>
+
+            </div> */}
 
             <Card className=' max-w[400px] mt-8 py-4'>
 
@@ -191,7 +210,7 @@ function SettingsPage() {
                                 />
 
 
-                                <FormField
+                                {/* <FormField
                                     control={form.control}
                                     name="isTwoFactorEnabled"
                                     render={({ field }) => (
@@ -216,7 +235,7 @@ function SettingsPage() {
                                             </FormControl>
                                         </FormItem>
                                     )}
-                                />
+                                /> */}
                             </div>
 
                             <FormError message={error} />
@@ -230,11 +249,11 @@ function SettingsPage() {
                     </Form>
 
                 </CardContent>
-
-                <button onClick={onClick} type='submit' className=' bg-slate-300 mb-2 px-4 py-2 shadow-md mx-auto mt-4 text-black cursor-pointer text-sm rounded flex items-center justify-center h-full w-[120px]'>
+                <button onClick={onClick} type='submit' className='  bg-slate-300 mb-2 px-4 py-2 shadow-md mx-auto mt-4 text-black cursor-pointer text-sm rounded flex items-center justify-center w-[120px] right-4 -bottom-8 '>
                     <ExitIcon className=' h-4 w-4 mr-2' />
                     Sign-out
                 </button>
+
 
 
             </Card>

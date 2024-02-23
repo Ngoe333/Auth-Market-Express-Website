@@ -50,6 +50,7 @@ export const Hero = () => {
                             src={"/Bg Banner 3.png"}
                             width={600}
                             height={600}
+                            priority={false} // {false} | {true}
                             alt="hero image"
                         />
 

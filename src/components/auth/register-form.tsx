@@ -36,8 +36,7 @@ export function RegisterForm() {
       name: "",
       email: "",
       password: "",
-      // adresse: "",
-      // phone: "",
+
     }
   })
 

@@ -1,57 +1,64 @@
-'use client';
+"use client";
 
 import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import {Button} from '@/components/ui/button';
-import { toast } from 'sonner';
+import { useState, useEffect, useTransition } from "react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useCurrentUser } from "../../../../hooks/use-current-user";
 
 function CategoriesPage() {
-  const [newCategoriesName, setNewCategoriesName] = useState();
+  const [categoriesName, setCategoriesName] = useState('');
   const [categories, setCategories] = useState([]);
+  const [editedCategory, setEditedCategory] = useState(null);
   const path = usePathname();
+  const user = useCurrentUser();
+  const [isPending, startTransition] = useTransition()
 
   useEffect(() => {
-    fetchCategory();  
+    fetchCategory();
   }, []);
 
-
   const fetchCategory = () => {
-    fetch('/api/categories').then(res => {
-      res.json().then(categories => {
+    fetch("/api/categories").then((res) => {
+      res.json().then((categories) => {
         setCategories(categories);
       });
-
     });
+  };
 
-
+  const data = { name: categoriesName };
+  if (editedCategory) {
+    data.id = editedCategory.id;
+    // toast.success('Category edited!')
   }
 
-  async function handleNewCategorieSubmit(event) {
+
+  
+  async function handleCategorieSubmit(event) {
     event.preventDefault();
 
-    const response = await fetch('/api/categories', {
-        method: 'POST',
-        headers: {'Content-Type': "application/json"},
-        body: JSON.stringify({name:newCategoriesName}),
+    const response = await fetch("/api/categories", {
+      method: editedCategory ? "PUT" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
 
-    setCategories('');
+    setCategoriesName("");
     fetchCategory();
+    setEditedCategory(null);
 
-    if(response.ok){
-        toast.success('Category create succesfully!')
-    }
-
-    else{
-        toast.error('Somthing went wrong!')
+    if (response.ok) {
+      toast.success("Category create succesfully!");
+    } else {
+      toast.error("Somthing went wrong!");
     }
   }
 
   return (
-    <section className=" max-w[500px] mt-24 flex mx-auto justify-center">
-      <div className=" flex flex-wrap  space-y-2 gap-2 tags mx-auto justify-center">
+    <>
+      <div className=" flex flex-wrap space-y-2 gap-2 mx-auto justify-center mt-24 items-center">
         <Link
           href={"/settings"}
           className={
@@ -62,13 +69,13 @@ function CategoriesPage() {
         >
           Settings
         </Link>
-        {UserRole.ADMIN && (
+        {user?.role === UserRole.ADMIN && (
           <>
             <Link
               href={"/categories"}
               className={
                 path === "/categories"
-                  ? "bg-green-500 text-white rounded-full py-2 px-4 "
+                  ? " bg-green-500 text-white rounded-full py-2 px-4 "
                   : "bg-gray-300 text-gray-700 rounded-full py-2 px-4 "
               }
             >
@@ -78,60 +85,99 @@ function CategoriesPage() {
               href={"/menu-items"}
               className={
                 path === "/menu-items"
-                  ? "bg-green-500 text-white rounded-full py-2 px-4 "
+                  ? " bg-green-500 text-white rounded-full py-2 px-4 "
                   : "bg-gray-300 text-gray-700 rounded-full py-2 px-4 "
               }
             >
-              Menu Items
+              Meun Items
             </Link>
             <Link
               href={"/users"}
               className={
                 path === "/users"
-                  ? "bg-green-500 text-white rounded-full py-2 px-4 "
+                  ? " bg-green-500 text-white rounded-full py-2 px-4 "
                   : "bg-gray-300 text-gray-700 rounded-full py-2 px-4 "
               }
             >
               Users
             </Link>
+
+            <Link
+              href={"/orders"}
+              className={
+                path === "/orders"
+                  ? " bg-green-500 text-white rounded-full py-2 px-4 "
+                  : "bg-gray-300 text-gray-700 rounded-full py-2 px-4 "
+              }
+            >
+              Orders
+            </Link>
+
+            <Link
+              href={"/new"}
+              className={
+                path === "/new"
+                  ? " bg-green-500 text-white rounded-full py-2 px-4 "
+                  : "bg-gray-300 text-gray-700 rounded-full py-2 px-4 "
+              }
+            >
+              New menu
+            </Link>
           </>
         )}
+      </div>
 
-        <div className=" mt-6">
-          <form onSubmit={handleNewCategorieSubmit}>
-            <div className=" flex flex-col gap-2 space-y-2 items-center justify-center ">
-              <div className="flex flex-col items-center justify-center space-y-3">
-                <label className="text-center text-2xl font-semibold  mb-4 text-gray-500">New category</label>
+      <div className=" mt-4  ">
+        <form onSubmit={handleCategorieSubmit} className="max-w-md max-auto">
+          <div className=" flex flex-col gap-2 space-y-2 items-center justify-center ">
+            <div className="flex flex-col items-center justify-center space-y-3">
+              <label className="text-center text-2xl font-semibold  mb-4 text-gray-500">
+                {editedCategory ? "Update category" : "New category name"}
+                {editedCategory && (
+                  <>
+                    {" "}
+                    : <b> {editedCategory.name} </b>{" "}
+                  </>
+                )}
+              </label>
+              <div className="grow">
                 <input
-                  type="text" className=" rounded-md outline-none py-2 bg-slate-100 shadow-inner pl-4"
+                  type="text"
+                  className=" rounded-md outline-none py-2 bg-slate-100 shadow-inner pl-4"
                   placeholder="Catogery"
-                  value={newCategoriesName}
-                  onChange={(event) => setNewCategoriesName(event.target.value)}
+                  disabled={isPending}
+                  value={categoriesName}
+                  onChange={event => setCategoriesName(event.target.value)}
                 />
               </div>
-
-              <div>
-                <Button
-                  asChild
-                  variant={' bg-green-500 text-white'}
-                  type="submit"
-                >
-                  Create
-                </Button>
-              </div>
             </div>
-          </form>
 
-          <div>
-            <h3 className="mt-8 text-sm text-gray-500">Edit category:</h3>
-            {categories.length > 0 && categories.map(c => (
-                <button className="bg-slate-200 rounded-xl py-4 w-[250px] px-4 flex gap-1 mb-2 cursor-pointer" key={c.toString()}>{c.name}</button>
-            ))}
-
+            <div>
+              <button className=" bg-green-400 px-8 py-2 rounded-md text-white font-semibold">
+              {editedCategory ? "update" : "Create"}
+              </button>
+            </div>
           </div>
+        </form>
+
+          <h3 className="mt-8 text-sm text-gray-500">Edit category:</h3>
+        <div className=" flex flex-wrap items-center justify-center text-center gap-2 md:">
+          {categories.length > 0 &&
+            categories.map((c, index) => (
+              <div
+                onClick={() => {
+                  setEditedCategory(c);
+                  setCategoriesName(c.name);
+                }}
+                className="bg-slate-200 rounded-xl py-4 w-[250px] px-4 gap-1 mb-2 cursor-pointer "
+                key={index}
+              >
+                {c.name}
+              </div>
+            ))}
         </div>
       </div>
-    </section>
+    </>
   );
 }
 

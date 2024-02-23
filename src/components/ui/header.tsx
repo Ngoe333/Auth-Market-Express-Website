@@ -33,23 +33,23 @@ export const Header = () => {
 
   return (
     <div>
-      <header className="bg-gradient-to-r from-[#dbd6d6] from-0% to-[#dbd6d6] to-100% flex items-center justify-between z-100 shadow-md shadow-green-100 w-full fixed top-0 left-0 px-4  ">
+      <header className=" bg-gradient-to-r from-[#dbd6d6] from-0% to-[#dbd6d6] to-100% flex items-center justify-between z-100 shadow-md shadow-green-100 w-full fixed top-0 left-0 px-4  ">
         <div>
           <Link href="/">
-            <Image src="/LOGO.png" width={70} height={20} alt="logo" className=" cursor-pointer" />
+            <Image src="/LOGO.png" width={70} height={20} priority={false} alt="logo" className=" cursor-pointer" />
           </Link>
         </div>
 
         <nav className="flex items-center justify-between relative ">
           <ul className="hidden md:flex  gap-6 font-semibold text-gray-500 absolute -left-60  sm:hidden ">
-            <Link className="text-green-500" href={"/"}>
+            <Link  href={"/"}  className={path === '/' ? ' cursor-pointer  text-green-500' : ''}>
               Home
             </Link>
-            <Link className="cursor-pointer" href={"/menus"}>Menus</Link>
-            <Link className="cursor-pointer" href={"/order"}>Order</Link>
-            <Link className="cursor-pointer" href={"/about"}>About</Link>
-            <Link className="cursor-pointer" href={"/settings"}>settings</Link>
-            <Link className="cursor-pointer" href={"/contact"}>Contact</Link>
+            <Link href={"/menus"}  className={path === '/menus' ? ' cursor-pointer  text-green-500' : ''}>Menus</Link>
+            <Link  href={"/order"}  className={path === '/order' ? ' cursor-pointer  text-green-500' : ''}>Order</Link>
+            <Link href={"/about"}  className={path === '/about' ? ' cursor-pointer  text-green-500' : ''}>About</Link>
+            <Link  href={"/settings"}  className={path === '/settings' ? ' cursor-pointer  text-green-500' : ''}>settings</Link>
+            <Link href={"/contact"}  className={path === '/contact' ? ' cursor-pointer  text-green-500' : ''}>Contact</Link>
           </ul>
 
         </nav>

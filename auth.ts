@@ -64,11 +64,8 @@ export const {
             return true
         },
 
-        async session({ token, session, user }: {session: Session, user?: User, token?: any}){
-            // console.log({SessionToken: token})
-
-            // session.user.id = user?.id
-            // session.user.adresse = (user as User).adresse 
+        async session({ token, session }: {session: Session, user?: User, token?: any}){
+          
 
             if(token.sub && session.user){
                 session.user.id = token.sub

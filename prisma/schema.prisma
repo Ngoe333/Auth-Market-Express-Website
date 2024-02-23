@@ -97,3 +97,14 @@ model Category{
 }
 
 
+model MenuItems{
+  id String @id @default(cuid()) @map("_id")
+  image String
+  name String
+  description String
+  basePrice String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+

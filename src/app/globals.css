@@ -81,3 +81,7 @@
 
 }
 
+button{
+  @apply bg-[#efefef] rounded-md p-2
+}
+

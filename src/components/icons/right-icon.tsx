@@ -1,4 +1,4 @@
-export const RightIcon = ({className="w-4 h-4 text-red-500"}) => {
+export const RightIcon = ({className="w-4 h-4 text-yellow-500"}) => {
     return (
       <>
         <svg
